@@ -1,0 +1,20 @@
+.div-scan-img {
+    height: 400px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.background-color {
+    background-color: white;
+    opacity: 0.6;
+    transition: 0.4s;
+}
+
+.background-color:hover, .background-img-selected {
+    background-color: rgb(247, 247, 247);
+    opacity: 1;
+}
+
+.box-shadow {
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important
+}
