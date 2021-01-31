@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+.color-white {
+    color: white !important;
+}
+
+.background-color-blue {
+    background-color: #2980b9 !important;
+}
+
+.margin-bottom-2 {
+    margin-bottom: 2%;
+}
+
+.centralize {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
