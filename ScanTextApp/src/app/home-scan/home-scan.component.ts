@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LinguagemService } from '../services/linguagem.service';
 
 @Component({
   selector: 'app-home-scan',
@@ -8,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class HomeScanComponent implements OnInit {
 
   public base64: string;
+  public linguagens: any;
 
-  constructor() { }
+  constructor(private linguagemService: LinguagemService) { 
+    this.carregarLinguagens();
+  }
 
   ngOnInit() {
   }
@@ -28,6 +32,12 @@ export class HomeScanComponent implements OnInit {
 
   public setBase64(base64: string) {
     this.base64 = base64;
+  }
+
+  carregarLinguagens() {
+    this.linguagemService.getAll('').subscribe((res) => {
+      this.linguagens = res;
+    }, (err) => {});
   }
 
 }
