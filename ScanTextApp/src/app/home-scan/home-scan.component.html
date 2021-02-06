@@ -1,16 +1,28 @@
 <div class="container">
-    <div class="offset-md-3 col-md-6 div-scan-img background-color box-shadow margin-bottom-2" (click)="file.click()"
-        [ngClass]="{'background-img-selected': base64}">
-        <label *ngIf="!base64" class="centralize">Selecione a imagem</label>
-        <img *ngIf="base64" src="{{base64}}" alt="" width="100%" height="100%"/>
-    </div>
-    <div class="offset-md-5 col-md-6 row">
-        <div class="col-md-3 text-center">
-            <button type="button" class="btn btn-primary background-color-blue">Processar</button>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Idioma da Imagem <i class="text-required">*</i></label>
+            <ng-multiselect-dropdown
+                [placeholder]="'Selecione'"
+                [data]="linguagens"
+                [(ngModel)]="linguagemSelecionada"
+                [settings]="dropdownSettings"
+                (onSelect)="selecionarLinguagemDropdown($event)">
+            </ng-multiselect-dropdown>
         </div>
-        <!-- <div class="col-md-3">
-            <button type="button" class="btn btn-danger">Limpar</button>
-        </div> -->
+        <div class="offset-md-1 col-md-6 div-scan-img background-color box-shadow margin-bottom-2" (click)="file.click()"
+            [ngClass]="{'background-img-selected': base64}">
+            <label *ngIf="!base64" class="centralize">Selecione a imagem</label>
+            <img *ngIf="base64" src="{{base64}}" alt="" width="100%" height="100%"/>
+        </div>
+        <div class="offset-md-6 col-md-6 row">
+            <div class="col-md-3 text-center">
+                <button type="button" class="btn btn-primary background-color-blue">Processar</button>
+            </div>
+            <!-- <div class="col-md-3">
+                <button type="button" class="btn btn-danger">Limpar</button>
+            </div> -->
+        </div>
     </div>
 </div>
 <input [hidden]="true" class="align-btn-new" type="file" (change)="selecionarImagem($event)" accept="application/pdf, image/*" #file>
