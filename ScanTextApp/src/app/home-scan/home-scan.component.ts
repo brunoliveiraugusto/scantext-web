@@ -66,10 +66,18 @@ export class HomeScanComponent implements OnInit {
   lerImagem() {
     this.scanService.post('', this.imagem)
     .subscribe((res) => {
-      this.imagem.texto = res.data;
+      let imagem = res as any;
+      this.imagem = imagem;
+      this.scrollToBottom();
     }, (err) => {
       console.log(err);
     })
+  }
+
+  scrollToBottom() {
+    setTimeout (() => {
+      window.scrollTo({ top: 5000, behavior: 'smooth' });
+    }, 200);
   }
 
   base64ToBuffer(base64: string) {
