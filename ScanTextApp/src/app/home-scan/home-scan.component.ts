@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Imagem } from '../models/imagem';
 import { LinguagemService } from '../services/linguagem.service';
+import { ScanService } from '../services/scan.service';
 
 @Component({
   selector: 'app-home-scan',
@@ -8,12 +10,13 @@ import { LinguagemService } from '../services/linguagem.service';
 })
 export class HomeScanComponent implements OnInit {
 
-  public base64: string;
   public linguagens: any;
   public dropdownSettings = {};
   public linguagemSelecionada: any;
+  public imagem: Imagem;
 
-  constructor(private linguagemService: LinguagemService) { 
+  constructor(private linguagemService: LinguagemService, private scanService: ScanService) { 
+    this.imagem = new Imagem();
     this.setSettingsDropdown();
     this.carregarLinguagens();
   }
@@ -34,7 +37,7 @@ export class HomeScanComponent implements OnInit {
   }
 
   public setBase64(base64: string) {
-    this.base64 = base64;
+    this.imagem.base64 = base64;
   }
 
   carregarLinguagens() {
@@ -58,6 +61,26 @@ export class HomeScanComponent implements OnInit {
 
   selecionarLinguagemDropdown() {
     
+  }
+
+  lerImagem() {
+    this.scanService.post('', this.imagem)
+    .subscribe((res) => {
+      this.imagem.texto = res.data;
+    }, (err) => {
+      console.log(err);
+    })
+  }
+
+  base64ToBuffer(base64: string) {
+    let x = base64.split(",");
+    let binary_string = window.atob(x[1]);
+    let len = binary_string.length;
+    let bytes = new ArrayBuffer(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    //this.imagem.buffer = bytes;
   }
 
 }
