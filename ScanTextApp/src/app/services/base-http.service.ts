@@ -28,5 +28,9 @@ export class BaseHttpService<T> {
 
   public getAll(action: string = ''): Observable<ScanResponse<Array<T>>> {
     return this._http.get<ScanResponse<Array<T>>>(`${this.baseUrl}/${this.resource}/${action}`);
-}
+  }
+
+  public post(action: string = '', body: any): Observable<ScanResponse<any>> {
+    return this._http.post<ScanResponse<any>>(`${this.baseUrl}/${this.resource}/${action}`, body);
+  }
 }
