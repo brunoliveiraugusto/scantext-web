@@ -10,8 +10,11 @@ export class HomeScanComponent implements OnInit {
 
   public base64: string;
   public linguagens: any;
+  public dropdownSettings = {};
+  public linguagemSelecionada: any;
 
   constructor(private linguagemService: LinguagemService) { 
+    this.setSettingsDropdown();
     this.carregarLinguagens();
   }
 
@@ -38,6 +41,23 @@ export class HomeScanComponent implements OnInit {
     this.linguagemService.getAll('').subscribe((res) => {
       this.linguagens = res;
     }, (err) => {});
+  }
+
+  setSettingsDropdown() {
+    this.dropdownSettings = {
+      singleSelection: true,
+      idField: 'id',
+      textField: 'idioma',
+      searchPlaceholderText: 'Pesquise',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true
+    };
+  }
+
+  selecionarLinguagemDropdown() {
+    
   }
 
 }
