@@ -59,8 +59,10 @@ export class HomeScanComponent implements OnInit {
     };
   }
 
-  selecionarLinguagemDropdown() {
-    
+  selecionarLinguagemDropdown(event: any) {
+    this.imagem.linguagem = this.linguagens.filter((linguagem) => {
+      return linguagem.id == event.id;
+    })[0];
   }
 
   lerImagem() {
