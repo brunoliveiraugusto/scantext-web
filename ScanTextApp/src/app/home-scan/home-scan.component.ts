@@ -16,6 +16,7 @@ export class HomeScanComponent implements OnInit {
   public dropdownSettings = {};
   public linguagemSelecionada: any;
   public imagem: Imagem;
+  public loading: boolean = false;
 
   constructor(private linguagemService: LinguagemService, private scanService: ScanService,
       private alertService: AlertService) { 
@@ -29,11 +30,13 @@ export class HomeScanComponent implements OnInit {
 
   private selecionarImagem(event) {
     if(event.target.files != null && event.target.files.length > 0) {
+      this.Loading();
       let base64;
       var reader = new FileReader();
       reader.onloadend = (e) => {
         base64 = reader.result as string;
         this.setBase64(base64);
+        this.Loading();
       }
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -71,14 +74,16 @@ export class HomeScanComponent implements OnInit {
   lerImagem() {
     if(!this.indicaItensObrigatoriosSelecionados()) 
       return false;
-      
+    
+    this.Loading();
     this.scanService.post('', this.imagem)
     .subscribe((res) => {
       let imagem = res as any;
       this.imagem = imagem;
       this.scrollToBottom();
+      this.Loading();
     }, (err) => {
-      console.log(err);
+      this.Loading();
     })
   }
 
@@ -111,6 +116,10 @@ export class HomeScanComponent implements OnInit {
         bytes[i] = binary_string.charCodeAt(i);
     }
     //this.imagem.buffer = bytes;
+  }
+
+  Loading() {
+    this.loading = !this.loading;
   }
 
 }

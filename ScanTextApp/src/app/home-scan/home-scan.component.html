@@ -23,9 +23,28 @@
                 <button type="button" class="btn btn-danger">Limpar</button>
             </div> -->
         </div>
+        <div *ngIf="imagem.texto" class="offset-md-2 col-md-8 margin-bottom-4 row">
+            <div class="col-md-6">
+                <span style="display: block;">Nome do Arquivo: Introdução.png</span>
+                <span>Tamanho do Arquivo: 612KB</span>
+            </div>
+            <div class="col-md-6">
+                <span style="display: block;">Assertividade de Leitura: 95%</span>
+                <span>Tempo de Processamento: 9 segundos</span>
+            </div>
+        </div>
         <div *ngIf="imagem.texto" class="offset-md-3 col-md-6 div-scan-img background-color box-shadow margin-bottom-4">
             <p class="margin-25">{{imagem.texto}}</p>
+        </div>
+        <div *ngIf="imagem.texto" class="offset-md-5 col-md-6 margin-bottom-4 row">
+            <div class="col-md-3 text-center">
+                <button type="button" class="btn btn-primary background-color-blue">Gravar</button>
+            </div>
+            <!-- <div class="col-md-3">
+                <button type="button" class="btn btn-danger">Limpar</button>
+            </div> -->
         </div>
     </div>
 </div>
 <input [hidden]="true" class="align-btn-new" type="file" (change)="selecionarImagem($event)" accept="application/pdf, image/*" #file>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
