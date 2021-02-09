@@ -10,11 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertModule } from 'ngx-alerts';
+import { NavbarScanComponent } from './navbar-scan/navbar-scan/navbar-scan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeScanComponent
+    HomeScanComponent,
+    NavbarScanComponent
   ],
   imports: [
     BrowserModule,

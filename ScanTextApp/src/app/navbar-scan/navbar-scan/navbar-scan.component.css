@@ -1,0 +1,10 @@
+.navbar-fixed {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+.z-index-navbar {
+    z-index: 10;    
+}
