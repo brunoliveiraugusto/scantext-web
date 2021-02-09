@@ -8,6 +8,8 @@ import { HomeScanComponent } from './home-scan/home-scan.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AlertModule } from 'ngx-alerts';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AppRoutingModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'ngx-alerts';
+import { isNullOrUndefined } from 'util';
 import { Imagem } from '../models/imagem';
 import { LinguagemService } from '../services/linguagem.service';
 import { ScanService } from '../services/scan.service';
@@ -15,7 +17,8 @@ export class HomeScanComponent implements OnInit {
   public linguagemSelecionada: any;
   public imagem: Imagem;
 
-  constructor(private linguagemService: LinguagemService, private scanService: ScanService) { 
+  constructor(private linguagemService: LinguagemService, private scanService: ScanService,
+      private alertService: AlertService) { 
     this.imagem = new Imagem();
     this.setSettingsDropdown();
     this.carregarLinguagens();
@@ -66,6 +69,9 @@ export class HomeScanComponent implements OnInit {
   }
 
   lerImagem() {
+    if(!this.indicaItensObrigatoriosSelecionados()) 
+      return false;
+      
     this.scanService.post('', this.imagem)
     .subscribe((res) => {
       let imagem = res as any;
@@ -74,6 +80,20 @@ export class HomeScanComponent implements OnInit {
     }, (err) => {
       console.log(err);
     })
+  }
+
+  indicaItensObrigatoriosSelecionados() {
+    if(isNullOrUndefined(this.imagem.base64)) {
+      this.alertService.warning("Selecione a Imagem.");
+      return false;
+    }
+
+    if(isNullOrUndefined(this.imagem.linguagem)) {
+      this.alertService.warning("Selecione o Idioma da Linguagem.");
+      return false;
+    }
+
+    return true;
   }
 
   scrollToBottom() {
