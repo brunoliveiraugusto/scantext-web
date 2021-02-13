@@ -161,12 +161,32 @@ export class HomeScanComponent implements OnInit {
   }
 
   gravarImagem() {
+    if(!this.indicaImagemValida())
+      return false;
+    
+    this.Loading();
     this.imagemService.post('', this.imagem)
     .subscribe((res) => {
       this.alertService.success("A imagem e os dados processados foram salvos com sucesso.");
+      this.Loading();
     }, (error) => {
       this.alertService.danger("Serviço indisponível, tente novamente.");
+      this.Loading();
     })
+  }
+
+  indicaImagemValida() {
+    if(isNullOrUndefined(this.imagem.texto) || isNullOrUndefined(this.imagem.base64)) {
+      this.alertService.warning("Selecione uma Imagem.");
+      return false;
+    }
+
+    if(isNullOrUndefined(this.imagem.linguagem.id)) {
+      this.alertService.warning("Selecione o Idioma da Imagem.");
+      return false;
+    }
+
+    return true;
   }
 
 }
