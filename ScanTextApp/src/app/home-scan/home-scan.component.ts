@@ -13,16 +13,18 @@ import { ScanService } from '../services/scan.service';
 export class HomeScanComponent implements OnInit {
 
   public linguagens: any;
+  public modelos: any;
   public dropdownSettings = {};
   public linguagemSelecionada: any;
+  public modeloSelecionado: any;
   public imagem: Imagem;
   public loading: boolean = false;
 
   constructor(private linguagemService: LinguagemService, private scanService: ScanService,
       private alertService: AlertService) { 
     this.imagem = new Imagem();
-    this.setSettingsDropdown();
     this.carregarLinguagens();
+    this.preencherModelos();
   }
 
   ngOnInit() {
@@ -67,11 +69,13 @@ export class HomeScanComponent implements OnInit {
     }, (err) => {});
   }
 
-  setSettingsDropdown() {
-    this.dropdownSettings = {
+
+
+  setSettingsDropdown(textField: string) {
+    return {
       singleSelection: true,
       idField: 'id',
-      textField: 'idioma',
+      textField: textField,
       searchPlaceholderText: 'Pesquise',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
@@ -99,18 +103,19 @@ export class HomeScanComponent implements OnInit {
       this.Loading();
     }, (err) => {
       this.Loading();
+      this.alertService.danger("Erro ao processar a imagem.");
     })
     this.scrollToBottom();
   }
 
   indicaItensObrigatoriosSelecionados() {
-    if(isNullOrUndefined(this.imagem.base64)) {
-      this.alertService.warning("Selecione a Imagem.");
+    if(isNullOrUndefined(this.imagem.linguagem)) {
+      this.alertService.warning("Selecione o Idioma da Imagem.");
       return false;
     }
-
-    if(isNullOrUndefined(this.imagem.linguagem)) {
-      this.alertService.warning("Selecione o Idioma da Linguagem.");
+    
+    if(isNullOrUndefined(this.imagem.base64)) {
+      this.alertService.warning("Selecione a Imagem.");
       return false;
     }
 
@@ -137,6 +142,18 @@ export class HomeScanComponent implements OnInit {
 
   Loading() {
     this.loading = !this.loading;
+  }
+
+  preencherModelos() {
+    this.modelos = [
+      {id: 1, modelo: "Título de eleitor"},
+      {id: 2, modelo: "CNH"},
+      {id: 3, modelo: "Identidade"},
+    ]
+  }
+
+  removerLinguagemSelecionada() {
+    this.imagem.linguagem = null;
   }
 
 }
