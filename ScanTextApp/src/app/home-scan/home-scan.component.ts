@@ -80,7 +80,8 @@ export class HomeScanComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      allowSearchFilter: true,
+      noDataAvailablePlaceholderText: 'Não há dados disponíveis'
     };
   }
 
