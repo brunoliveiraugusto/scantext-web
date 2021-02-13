@@ -13,16 +13,15 @@ import { AlertModule } from 'ngx-alerts';
 import { NavbarScanComponent } from './navbar-scan/navbar-scan.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FooterScanComponent } from './footer-scan/footer-scan.component';
-import { PageTitleScanComponent } from './page-title-scan/page-title-scan.component';
 import { ImagemProcessadaScanModule } from './components/imagem-processada-scan/imagem-processada-scan.module';
+import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeScanComponent,
     NavbarScanComponent,
-    FooterScanComponent,
-    PageTitleScanComponent
+    FooterScanComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +32,11 @@ import { ImagemProcessadaScanModule } from './components/imagem-processada-scan/
     BrowserAnimationsModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
     NgxLoadingModule.forRoot({}),
-    ImagemProcessadaScanModule
+    ImagemProcessadaScanModule,
+    PageTitleScanModule
+  ],
+  exports: [
+    HomeScanComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
