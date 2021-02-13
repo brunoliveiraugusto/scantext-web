@@ -14,6 +14,7 @@ import { NavbarScanComponent } from './navbar-scan/navbar-scan.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FooterScanComponent } from './footer-scan/footer-scan.component';
 import { PageTitleScanComponent } from './page-title-scan/page-title-scan.component';
+import { ImagemProcessadaScanModule } from './components/imagem-processada-scan/imagem-processada-scan.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PageTitleScanComponent } from './page-title-scan/page-title-scan.compon
     FormsModule,
     BrowserAnimationsModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    ImagemProcessadaScanModule
   ],
   providers: [],
   bootstrap: [AppComponent]
