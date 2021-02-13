@@ -13,8 +13,8 @@
     background-color: #2980b9 !important;
 }
 
-.margin-bottom-4 {
-    margin-bottom: 4%;
+.margin-bottom-form {
+    margin-bottom: 2%;
 }
 
 .centralize {
@@ -35,5 +35,13 @@
 }
 
 .margin-top {
-    margin-top: 100px;
+    margin-top: 80px;
+}
+
+.text-bolder {
+    font-weight: bold;
+}
+
+.display-block {
+    display: block;
 }
