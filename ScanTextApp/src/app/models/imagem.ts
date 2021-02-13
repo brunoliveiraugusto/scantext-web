@@ -9,4 +9,6 @@ export class Imagem {
     texto: string;
     meanConfidence: number;
     linguagem: Linguagem;
+    dataCadastro: Date;
+    dataAtualizacao: Date;
 }
