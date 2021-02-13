@@ -35,7 +35,7 @@
 }
 
 .margin-top {
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .text-bolder {
@@ -62,4 +62,8 @@
 
 .container-scan {
     margin-bottom: 90px;
+}
+
+.icon-size {
+    font-size: 20px;
 }
