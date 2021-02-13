@@ -29,17 +29,32 @@ export class HomeScanComponent implements OnInit {
   }
 
   private selecionarImagem(event) {
-    if(event.target.files != null && event.target.files.length > 0) {
+    if(event.target.files != null && event.target.files.length == 1) {
       this.Loading();
       let base64;
       var reader = new FileReader();
+      this.preencherInformacoesImagem(event.target.files[0]);
       reader.onloadend = (e) => {
         base64 = reader.result as string;
         this.setBase64(base64);
         this.Loading();
       }
       reader.readAsDataURL(event.target.files[0]);
+    } 
+    else if(event.target.files.length > 1) {
+      this.alertService.warning("Selecione uma imagem por vez.");
     }
+  }
+
+  preencherInformacoesImagem(imagem: any) {
+    this.imagem.formato = this.formatarTipoImagem(imagem.type);
+    this.imagem.size = imagem.size;
+    this.imagem.nome = imagem.name;
+  }
+
+  formatarTipoImagem(tipo: string) {
+    let splitTipo = tipo.split("/");
+    return "imagem/".concat(splitTipo[1]);
   }
 
   public setBase64(base64: string) {
@@ -85,6 +100,7 @@ export class HomeScanComponent implements OnInit {
     }, (err) => {
       this.Loading();
     })
+    this.scrollToBottom();
   }
 
   indicaItensObrigatoriosSelecionados() {
@@ -103,7 +119,8 @@ export class HomeScanComponent implements OnInit {
 
   scrollToBottom() {
     setTimeout (() => {
-      window.scrollTo({ top: 5000, behavior: 'smooth' });
+      let divBtnGravar = document.getElementById("btn-gravar");
+      window.scrollTo({ top: divBtnGravar.scrollWidth, behavior: 'smooth' });
     }, 200);
   }
 
