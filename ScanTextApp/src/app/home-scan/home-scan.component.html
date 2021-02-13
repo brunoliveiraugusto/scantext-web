@@ -56,12 +56,8 @@
     <div class="row">
         <div *ngIf="imagem.texto" class="col-md-3 col-lg-3 margin-bottom-form">
             <div class="col-md-12">
-                <span style="display: block;">Nome do Arquivo: Introdução.png</span>
-                <span>Tamanho do Arquivo: 612KB</span>
-            </div>
-            <div class="col-md-12">
-                <span style="display: block;">Assertividade de Leitura: 95%</span>
-                <span>Tempo de Processamento: 9 segundos</span>
+                <span class="text-bolder display-block">Assertividade de Leitura: </span>
+                <span>{{imagem.meanConfidence * 100 | number : '1.2-2'}}%</span>
             </div>
         </div>
         <div *ngIf="imagem.texto" class="col-md-6 col-lg-6 div-scan-img background-color box-shadow margin-bottom-form">

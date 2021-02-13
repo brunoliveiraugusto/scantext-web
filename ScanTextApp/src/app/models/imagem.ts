@@ -7,5 +7,6 @@ export class Imagem {
     formato: string;
     base64: string;
     texto: string;
+    meanConfidence: number;
     linguagem: Linguagem;
 }
