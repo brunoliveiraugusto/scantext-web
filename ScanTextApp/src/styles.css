@@ -10,7 +10,7 @@
 }
 
 .background-color-blue {
-    background-color: #2980b9 !important;
+    background-color: #A3A3A3 !important;
 }
 
 .margin-bottom-form {
@@ -44,4 +44,18 @@
 
 .display-block {
     display: block;
+}
+
+.no-padding-margin {
+    padding: 0px;
+    margin: 0px;
+}
+
+.btn-primary-scan {
+    background-color: #337ab7;
+    border: 1px solid #337ab7;
+}
+
+.container-scan {
+    margin-bottom: 75px;
 }
