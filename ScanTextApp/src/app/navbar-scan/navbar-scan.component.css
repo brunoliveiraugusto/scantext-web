@@ -8,3 +8,11 @@
 .z-index-navbar {
     z-index: 10;    
 }
+
+.margin-bottom-icon {
+  margin-bottom: 8px;
+}
+
+.margin-left-link {
+  margin-left: 15px;
+}
