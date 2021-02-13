@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'ngx-alerts';
 import { isNullOrUndefined } from 'util';
 import { Imagem } from '../models/imagem';
+import { ImagemService } from '../services/imagem.service';
 import { LinguagemService } from '../services/linguagem.service';
 import { ScanService } from '../services/scan.service';
 
@@ -20,8 +21,10 @@ export class HomeScanComponent implements OnInit {
   public imagem: Imagem;
   public loading: boolean = false;
 
-  constructor(private linguagemService: LinguagemService, private scanService: ScanService,
-      private alertService: AlertService) { 
+  constructor(private linguagemService: LinguagemService, 
+      private scanService: ScanService,
+      private alertService: AlertService,
+      private imagemService: ImagemService) { 
     this.imagem = new Imagem();
     this.carregarLinguagens();
     this.preencherModelos();
@@ -155,6 +158,15 @@ export class HomeScanComponent implements OnInit {
 
   removerLinguagemSelecionada() {
     this.imagem.linguagem = null;
+  }
+
+  gravarImagem() {
+    this.imagemService.post('', this.imagem)
+    .subscribe((res) => {
+      this.alertService.success("A imagem e os dados processados foram salvos com sucesso.");
+    }, (error) => {
+      this.alertService.danger("Serviço indisponível, tente novamente.");
+    })
   }
 
 }
