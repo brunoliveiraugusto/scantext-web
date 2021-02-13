@@ -13,13 +13,15 @@ import { AlertModule } from 'ngx-alerts';
 import { NavbarScanComponent } from './navbar-scan/navbar-scan.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FooterScanComponent } from './footer-scan/footer-scan.component';
+import { PageTitleScanComponent } from './page-title-scan/page-title-scan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeScanComponent,
     NavbarScanComponent,
-    FooterScanComponent
+    FooterScanComponent,
+    PageTitleScanComponent
   ],
   imports: [
     BrowserModule,
