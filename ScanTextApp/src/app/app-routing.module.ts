@@ -5,13 +5,17 @@ import { ImagemProcessadaScanComponent } from './components/imagem-processada-sc
 
 const routes: Routes = [
   {
-    path: '/',
+    path: 'home-scan',
     component: HomeScanComponent
-  }, 
+  },
   {
-    path: '/imagens-digitalizadas',
+    path: 'imagens-digitalizadas',
     component: ImagemProcessadaScanComponent
-  }
+  },
+  {
+    path: '**',
+    component: HomeScanComponent
+  } 
 ];
 
 @NgModule({
