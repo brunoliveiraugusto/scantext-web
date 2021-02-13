@@ -1,11 +1,6 @@
-<div class="container margin-top">
+<div class="container margin-top">    
     <div class="row">
-        <div class="offset-md-3 col-md-6 div-scan-img background-color box-shadow margin-bottom-4 cursor-pointer" (click)="file.click()"
-            [ngClass]="{'background-img-selected': imagem.base64}">
-            <label *ngIf="!imagem.base64" class="centralize">Selecione a imagem</label>
-            <img *ngIf="imagem.base64" src="{{imagem.base64}}" alt="" width="100%" height="100%"/>
-        </div>
-        <div class="col-md-3">
+        <div class="offset-md-3 offset-lg-3 col-md-3 col-lg-3 margin-bottom-form">
             <label>Idioma da Imagem <i class="text-required">*</i></label>
             <ng-multiselect-dropdown
                 [placeholder]="'Selecione'"
@@ -15,35 +10,70 @@
                 (onSelect)="selecionarLinguagemDropdown($event)">
             </ng-multiselect-dropdown>
         </div>
-        <div class="offset-md-5 col-md-6 margin-bottom-4 row">
-            <div class="col-md-3 text-center">
-                <button type="button" class="btn btn-primary background-color-blue" (click)="lerImagem()">Processar</button>
-            </div>
-            <!-- <div class="col-md-3">
-                <button type="button" class="btn btn-danger">Limpar</button>
-            </div> -->
+        <div class="col-md-3 col-lg-3 margin-bottom-form">
+            <label>Modelo</label>
+            <ng-multiselect-dropdown
+                [placeholder]="'Selecione'"
+                [data]="linguagens"
+                [(ngModel)]="linguagemSelecionada"
+                [settings]="dropdownSettings"
+                (onSelect)="selecionarLinguagemDropdown($event)">
+            </ng-multiselect-dropdown>
         </div>
-        <div *ngIf="imagem.texto" class="offset-md-2 col-md-8 margin-bottom-4 row">
-            <div class="col-md-6">
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="col-md-12 col-lg-12" *ngIf="imagem.nome">
+                <span class="text-bolder display-block">Nome da Imagem: </span>
+                <span>{{imagem.nome}}</span>
+            </div>
+            <div class="col-md-12 col-lg-12" *ngIf="imagem.size">
+                <span class="text-bolder display-block">Tamanho da Imagem: </span>
+                <span>{{imagem.size}} KB</span>
+            </div>
+            <div class="col-md-12 col-lg-12" *ngIf="imagem.formato">
+                <span class="text-bolder display-block">Formato da Imagem: </span>
+                <span>{{imagem.formato}}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12 col-lg-12 div-scan-img background-color box-shadow margin-bottom-form cursor-pointer" (click)="file.click()"
+                [ngClass]="{'background-img-selected': imagem.base64}">
+                <label *ngIf="!imagem.base64" class="centralize">Selecione a imagem</label>
+                <img *ngIf="imagem.base64" src="{{imagem.base64}}" alt="" width="100%" height="100%"/>
+            </div>
+        </div>
+    </div>
+    <div class="offset-md-5 offset-lg-5 col-md-6 col-lg-6 margin-bottom-form row">
+        <div class="col-md-3 text-center">
+            <button type="button" class="btn btn-primary background-color-blue" (click)="lerImagem()">Processar</button>
+        </div>
+        <!-- <div class="col-md-3">
+            <button type="button" class="btn btn-danger">Limpar</button>
+        </div> -->
+    </div>
+    <div class="row">
+        <div *ngIf="imagem.texto" class="col-md-3 col-lg-3 margin-bottom-form">
+            <div class="col-md-12">
                 <span style="display: block;">Nome do Arquivo: Introdução.png</span>
                 <span>Tamanho do Arquivo: 612KB</span>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <span style="display: block;">Assertividade de Leitura: 95%</span>
                 <span>Tempo de Processamento: 9 segundos</span>
             </div>
         </div>
-        <div *ngIf="imagem.texto" class="offset-md-3 col-md-6 div-scan-img background-color box-shadow margin-bottom-4">
+        <div *ngIf="imagem.texto" class="col-md-6 col-lg-6 div-scan-img background-color box-shadow margin-bottom-form">
             <p class="margin-25">{{imagem.texto}}</p>
         </div>
-        <div *ngIf="imagem.texto" class="offset-md-5 col-md-6 margin-bottom-4 row">
-            <div class="col-md-3 text-center">
-                <button type="button" class="btn btn-primary background-color-blue">Gravar</button>
-            </div>
-            <!-- <div class="col-md-3">
-                <button type="button" class="btn btn-danger">Limpar</button>
-            </div> -->
+    </div>
+    <div *ngIf="imagem.texto" class="offset-md-5 offset-lg-5 col-md-6 col-lg-6 margin-bottom-form row" id="btn-gravar">
+        <div class="col-md-3 text-center">
+            <button type="button" class="btn btn-primary background-color-blue">Gravar</button>
         </div>
+        <!-- <div class="col-md-3">
+            <button type="button" class="btn btn-danger">Limpar</button>
+        </div> -->
     </div>
 </div>
 <input [hidden]="true" class="align-btn-new" type="file" (change)="selecionarImagem($event)" accept="application/pdf, image/*" #file>
