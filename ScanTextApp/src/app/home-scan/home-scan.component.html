@@ -1,28 +1,29 @@
 <div class="container margin-top">    
-    <div class="row">
-        <div class="offset-md-3 offset-lg-3 col-md-3 col-lg-3 margin-bottom-form">
+    <div class="row margin-bottom-form">
+        <div class="offset-md-3 offset-lg-3 col-md-3 col-lg-3">
             <label>Idioma da Imagem <i class="text-required">*</i></label>
             <ng-multiselect-dropdown
                 [placeholder]="'Selecione'"
                 [data]="linguagens"
                 [(ngModel)]="linguagemSelecionada"
-                [settings]="dropdownSettings"
-                (onSelect)="selecionarLinguagemDropdown($event)">
+                [settings]="setSettingsDropdown('idioma')"
+                (onSelect)="selecionarLinguagemDropdown($event)"
+                (onDeSelect)="removerLinguagemSelecionada()">
             </ng-multiselect-dropdown>
         </div>
-        <div class="col-md-3 col-lg-3 margin-bottom-form">
+        <div class="col-md-3 col-lg-3">
             <label>Modelo</label>
             <ng-multiselect-dropdown
                 [placeholder]="'Selecione'"
-                [data]="linguagens"
-                [(ngModel)]="linguagemSelecionada"
-                [settings]="dropdownSettings"
-                (onSelect)="selecionarLinguagemDropdown($event)">
+                [data]="modelos"
+                [(ngModel)]="modeloSelecionado"
+                [settings]="setSettingsDropdown('modelo')"
+                (onDeSelect)="removerModeloSelecionado()">
             </ng-multiselect-dropdown>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 margin-bottom-form">
             <div class="col-md-12 col-lg-12" *ngIf="imagem.nome">
                 <span class="text-bolder display-block">Nome da Imagem: </span>
                 <span>{{imagem.nome}}</span>
