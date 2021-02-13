@@ -46,6 +46,10 @@
     display: block;
 }
 
+.display-inline {
+    display: inline;
+}
+
 .no-padding-margin {
     padding: 0px;
     margin: 0px;
