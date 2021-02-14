@@ -26,12 +26,13 @@ export class HomeScanComponent implements OnInit {
       private alertService: AlertService,
       private imagemService: ImagemService) { 
     this.imagem = new Imagem();
+  }
+
+  ngOnInit() {
     this.carregarLinguagens();
     this.preencherModelos();
   }
 
-  ngOnInit() {
-  }
 
   private selecionarImagem(event) {
     if(event.target.files != null && event.target.files.length == 1) {
@@ -103,7 +104,11 @@ export class HomeScanComponent implements OnInit {
     .subscribe((res) => {
       let imagem = res as any;
       this.imagem = imagem;
-      this.scrollToBottom();
+      if(this.imagem.meanConfidence <= 0 || isNullOrUndefined(this.imagem.texto)) {
+        this.alertService.warning("Erro ao processar a imagem.");
+      } else {
+        this.scrollToBottom();
+      }
       this.Loading();
     }, (err) => {
       this.Loading();

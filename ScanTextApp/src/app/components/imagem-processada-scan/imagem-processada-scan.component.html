@@ -1,1 +1,20 @@
-<p>imagem-processada-scan works!</p>
+<div class="container margin-top container-scan">    
+    <app-page-title-scan [page-name]="'Imagens'" [icon]="'bi-images'"></app-page-title-scan>
+    <div class="col-md-12">
+        <ngx-datatable
+            class="material cursor-pointer"
+            [rows]="rows"
+            [columnMode]="'force'"
+            [columns]="setColumnsDatatable()"
+            [count]="paginationFilter.total"
+            [headerHeight]="50"
+            [rowHeight]="50"
+            [footerHeight]="50"
+            [externalPaging]="true"
+            [offset]="currentPage"
+            [loadingIndicator]="loading"
+            (page)="setPage($event)">
+        </ngx-datatable>
+    </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
