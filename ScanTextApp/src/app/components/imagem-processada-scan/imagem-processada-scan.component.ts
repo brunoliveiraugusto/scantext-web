@@ -5,6 +5,8 @@ import { DatePipe, PercentPipe } from '@angular/common';
 import { Page } from 'src/app/utils/models/page';
 import { SelectionType } from '@swimlane/ngx-datatable';
 
+declare let $: any;
+
 @Component({
   selector: 'app-imagem-processada-scan',
   templateUrl: './imagem-processada-scan.component.html',
@@ -38,6 +40,7 @@ export class ImagemProcessadaScanComponent implements OnInit {
   }
 
   ngOnInit() {
+    $('.dropdown-toggle').dropdown();
     this.carregarImagensPaginacao(this.page);
   }
 
@@ -50,6 +53,7 @@ export class ImagemProcessadaScanComponent implements OnInit {
       this.page.limit = this.paginationFilter.limit;
       this.page.number = this.paginationFilter.page - 1;
       this.page.total = this.paginationFilter.total;
+      this.rowSelected = null;
       this.setRowsDatatable();
       this.showLoading();
     }, (err) => {
