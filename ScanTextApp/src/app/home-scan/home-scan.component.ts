@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { isNullOrUndefined } from 'util';
 import { Imagem } from '../models/imagem';
@@ -16,7 +17,7 @@ export class HomeScanComponent implements OnInit {
   public linguagens: any;
   public modelos: any;
   public dropdownSettings = {};
-  public linguagemSelecionada: any;
+  public linguagemSelecionada: any = {};
   public modeloSelecionado: any;
   public imagem: Imagem;
   public loading: boolean = false;
@@ -24,8 +25,11 @@ export class HomeScanComponent implements OnInit {
   constructor(private linguagemService: LinguagemService, 
       private scanService: ScanService,
       private alertService: AlertService,
-      private imagemService: ImagemService) { 
+      private imagemService: ImagemService,
+      private router: Router,
+      private activatedRoute: ActivatedRoute) { 
     this.imagem = new Imagem();
+    this.obterIdImagem();
   }
 
   ngOnInit() {
@@ -85,7 +89,8 @@ export class HomeScanComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
       allowSearchFilter: true,
-      noDataAvailablePlaceholderText: 'Não há dados disponíveis'
+      noDataAvailablePlaceholderText: 'Não há dados disponíveis',
+      closeDropDownOnSelection: true
     };
   }
 
@@ -165,19 +170,41 @@ export class HomeScanComponent implements OnInit {
     this.imagem.linguagem = null;
   }
 
-  gravarImagem() {
-    if(!this.indicaImagemValida())
+  salvarImagem() {
+    if(!this.indicaImagemValida()) {
       return false;
+    }
     
+    if(isNullOrUndefined(this.imagem.id)) {
+      this.gravarImagem();
+    } 
+    else {
+      this.atualizarImagem();
+    }
+  }
+
+  gravarImagem() {
     this.Loading();
     this.imagemService.post('', this.imagem)
     .subscribe((res) => {
       this.alertService.success("A imagem e os dados processados foram salvos com sucesso.");
       this.Loading();
     }, (error) => {
-      this.alertService.danger("Serviço indisponível, tente novamente.");
+      this.alertService.danger("Erro ao salvar a imagem.");
       this.Loading();
     })
+  }
+
+  atualizarImagem() {
+    this.Loading();
+    this.imagemService.put('', this.imagem, this.imagem.id)
+    .subscribe((res) => {
+      this.alertService.success("A imagem e os dados processados foram atualizados com sucesso.");
+      this.Loading();
+    },(err) => {
+      this.Loading();
+      this.alertService.danger("Erro ao atualizar a imagem.");
+    });
   }
 
   indicaImagemValida() {
@@ -194,4 +221,28 @@ export class HomeScanComponent implements OnInit {
     return true;
   }
 
+  obterIdImagem() {
+    this.activatedRoute.queryParams
+    .subscribe((params) => {
+        let idImagem = params['id'];
+        if(idImagem)
+          this.carregarImagemPorId(idImagem);
+    });
+  }
+
+  carregarImagemPorId(id: string) {
+    this.Loading();
+    this.imagemService.getById('', id)
+    .subscribe((res) => {
+      let imagem = res as any;
+      this.imagem = imagem;
+      this.definirLinguagemSelecionada(imagem.linguagem);
+      this.router.navigate([], { queryParams: null});
+      this.Loading();
+    });
+  }
+
+  definirLinguagemSelecionada(linguagem) {
+    this.linguagemSelecionada = [{ id: linguagem.id, idioma: linguagem.idioma }];
+  }
 }
