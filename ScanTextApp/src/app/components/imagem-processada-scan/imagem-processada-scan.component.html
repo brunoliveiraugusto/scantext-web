@@ -27,6 +27,7 @@
             [offset]="page.number"
             [loadingIndicator]="loading"
             [limit]="page.limit"
+            [messages]="{emptyMessage: 'Não há imagens processadas.', selectedMessage: 'selecionado(s)', totalMessage: 'registro(s)'}"
             [selectionType]="SelectionType.single"
             (page)="carregarImagensPaginacao($event)"
             (select)="onSelect($event)">
