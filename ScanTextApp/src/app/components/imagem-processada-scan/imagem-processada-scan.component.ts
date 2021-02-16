@@ -4,6 +4,7 @@ import { PaginationFilter } from 'src/app/utils/models/pagination-filter';
 import { DatePipe, PercentPipe } from '@angular/common';
 import { Page } from 'src/app/utils/models/page';
 import { SelectionType } from '@swimlane/ngx-datatable';
+import { Router } from '@angular/router';
 
 declare let $: any;
 
@@ -33,7 +34,8 @@ export class ImagemProcessadaScanComponent implements OnInit {
   ];
 
   constructor(private imagemService: ImagemService, 
-      private datePipe: DatePipe, private percentPipe: PercentPipe) { 
+      private datePipe: DatePipe, private percentPipe: PercentPipe,
+      private router: Router) { 
     this.paginationFilter = new PaginationFilter();
     this.page.number = 1;
     this.page.limit = 5;
@@ -80,6 +82,10 @@ export class ImagemProcessadaScanComponent implements OnInit {
   }
 
   onSelect(event: any) {
-    this.rowSelected = event;
+    this.rowSelected = event.selected[0];
+  }
+
+  editarImagem() {
+    this.router.navigate(['/home-scan'], { queryParams: { id: this.rowSelected.id }});
   }
 }
