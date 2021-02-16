@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ImagemService } from 'src/app/services/imagem.service';
 import { PaginationFilter } from 'src/app/utils/models/pagination-filter';
 import { DatePipe, PercentPipe } from '@angular/common';
+import { Page } from 'src/app/utils/models/page';
 
 @Component({
   selector: 'app-imagem-processada-scan',
@@ -11,29 +12,33 @@ import { DatePipe, PercentPipe } from '@angular/common';
 })
 export class ImagemProcessadaScanComponent implements OnInit {
 
-  imagens: Array<any>;
   paginationFilter: PaginationFilter;
   loading: boolean = false;
   configDataTable: any;
   columnsDataTable: any;
   rows: any;
-  currentPage: number = 0;
+  page = new Page();
 
   constructor(private imagemService: ImagemService, 
       private datePipe: DatePipe, private percentPipe: PercentPipe) { 
     this.paginationFilter = new PaginationFilter();
+    this.page.number = 1;
+    this.page.limit = 5;
   }
 
   ngOnInit() {
-    this.carregarImagensPaginacao();
+    this.carregarImagensPaginacao(this.page);
   }
 
-  carregarImagensPaginacao() {
+  carregarImagensPaginacao(page?: any) {
     this.showLoading();
+    this.paginationFilter.page = page.offset + 1;
     this.imagemService.post('obter-imagens-paginacao', this.paginationFilter)
     .subscribe((res) => {
       this.paginationFilter = res as any;
-      this.imagens = this.paginationFilter.pages;
+      this.page.limit = this.paginationFilter.limit;
+      this.page.number = this.paginationFilter.page - 1;
+      this.page.total = this.paginationFilter.total;
       this.setRowsDatatable();
       this.showLoading();
     }, (err) => {
@@ -42,7 +47,7 @@ export class ImagemProcessadaScanComponent implements OnInit {
   }
 
   setRowsDatatable() {
-    this.rows = this.imagens.map((imagem) => {
+    this.rows = this.paginationFilter.pages.map((imagem) => {
       return {
         nomeImagem: imagem.nome,
         formato: imagem.formato,
@@ -68,19 +73,5 @@ export class ImagemProcessadaScanComponent implements OnInit {
       { name: 'Idioma' },
       { name: 'Data Cadastro' }
     ];
-  }
-
-  setPage(event: any) {    
-    if(event.offset > this.currentPage) {
-      this.paginationFilter.skip += 5;
-    } else if(event.offset < this.currentPage && this.currentPage > 0) {
-      this.paginationFilter.skip -= 5;
-    }
-    this.currentPage = event.offset;
-    this.carregarImagensPaginacao();
-  }
-
-  selectRow(event: any) {
-    var teste = event;
   }
 }

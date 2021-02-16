@@ -11,9 +11,11 @@
             [rowHeight]="50"
             [footerHeight]="50"
             [externalPaging]="true"
-            [offset]="currentPage"
+            [offset]="page.number"
             [loadingIndicator]="loading"
-            (page)="setPage($event)">
+            [reorderable]="true"
+            [limit]="page.limit"
+            (page)="carregarImagensPaginacao($event)">
         </ngx-datatable>
     </div>
 </div>
