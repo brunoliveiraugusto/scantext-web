@@ -1,0 +1,19 @@
+:host /deep/ .datatable-body-row.active .datatable-row-group {
+    background-color: #337ab7 !important;
+}
+
+.form-button-acoes {
+    padding-right: 0px;
+    text-align: right;
+}
+
+.button-acoes {
+    background-color: #337ab7;
+    border: 1px solid #337ab7;
+}
+
+.background-disabled {
+    background-color: #A3A3A3;
+    border: 1px solid #A3A3A3;
+    cursor: not-allowed;
+}

@@ -1,8 +1,21 @@
 <div class="container margin-top container-scan">    
     <app-page-title-scan [page-name]="'Imagens'" [icon]="'bi-images'"></app-page-title-scan>
+    <div class="btn-group col-md-12">
+        <div class="offset-md-10 col-md-2 form-button-acoes margin-bottom-form">
+            <button type="button" class="btn btn-primary dropdown-toggle button-acoes" 
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [disabled]="!rowSelected"
+                [ngClass]="{'background-disabled' : !rowSelected}">
+                Ações
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Editar</a>
+                <a class="dropdown-item" href="#">Excluir</a>
+              </div>
+        </div>
+    </div>
     <div class="col-md-12">
         <ngx-datatable
-            class="material"
+            class="material cursor-pointer"
             [rows]="rows"
             [columnMode]="'force'"
             [columns]="columns"

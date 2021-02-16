@@ -20,6 +20,7 @@ export class ImagemProcessadaScanComponent implements OnInit {
   rows: any;
   page = new Page();
   SelectionType = SelectionType;
+  rowSelected: any;
   columns: any[] = [
     { prop: 'nomeImagem' },
     { name: 'Formato' },
@@ -75,6 +76,6 @@ export class ImagemProcessadaScanComponent implements OnInit {
   }
 
   onSelect(event: any) {
-    var teste = event;
+    this.rowSelected = event;
   }
 }
