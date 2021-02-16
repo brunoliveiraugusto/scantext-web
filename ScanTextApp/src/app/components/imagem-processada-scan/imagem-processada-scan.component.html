@@ -2,10 +2,10 @@
     <app-page-title-scan [page-name]="'Imagens'" [icon]="'bi-images'"></app-page-title-scan>
     <div class="col-md-12">
         <ngx-datatable
-            class="material cursor-pointer"
+            class="material"
             [rows]="rows"
             [columnMode]="'force'"
-            [columns]="setColumnsDatatable()"
+            [columns]="columns"
             [count]="paginationFilter.total"
             [headerHeight]="50"
             [rowHeight]="50"
@@ -13,9 +13,10 @@
             [externalPaging]="true"
             [offset]="page.number"
             [loadingIndicator]="loading"
-            [reorderable]="true"
             [limit]="page.limit"
-            (page)="carregarImagensPaginacao($event)">
+            [selectionType]="SelectionType.single"
+            (page)="carregarImagensPaginacao($event)"
+            (select)="onSelect($event)">
         </ngx-datatable>
     </div>
 </div>

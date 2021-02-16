@@ -3,6 +3,7 @@ import { ImagemService } from 'src/app/services/imagem.service';
 import { PaginationFilter } from 'src/app/utils/models/pagination-filter';
 import { DatePipe, PercentPipe } from '@angular/common';
 import { Page } from 'src/app/utils/models/page';
+import { SelectionType } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-imagem-processada-scan',
@@ -18,6 +19,15 @@ export class ImagemProcessadaScanComponent implements OnInit {
   columnsDataTable: any;
   rows: any;
   page = new Page();
+  SelectionType = SelectionType;
+  columns: any[] = [
+    { prop: 'nomeImagem' },
+    { name: 'Formato' },
+    { name: 'Tamanho' },
+    { name: 'Assertividade' },
+    { name: 'Idioma' },
+    { name: 'Data Cadastro' }
+  ];
 
   constructor(private imagemService: ImagemService, 
       private datePipe: DatePipe, private percentPipe: PercentPipe) { 
@@ -64,14 +74,7 @@ export class ImagemProcessadaScanComponent implements OnInit {
     this.loading = !this.loading;
   }
 
-  setColumnsDatatable() {
-    return [
-      { name: 'Nome Imagem' },
-      { name: 'Formato' },
-      { name: 'Tamanho' },
-      { name: 'Assertividade' },
-      { name: 'Idioma' },
-      { name: 'Data Cadastro' }
-    ];
+  onSelect(event: any) {
+    var teste = event;
   }
 }
