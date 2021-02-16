@@ -9,6 +9,10 @@ const routes: Routes = [
     component: HomeScanComponent
   },
   {
+    path: 'home-scan/:id',
+    component: HomeScanComponent
+  },
+  {
     path: 'imagens-digitalizadas',
     component: ImagemProcessadaScanComponent
   },
