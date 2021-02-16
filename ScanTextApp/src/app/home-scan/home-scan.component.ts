@@ -6,6 +6,7 @@ import { Imagem } from '../models/imagem';
 import { ImagemService } from '../services/imagem.service';
 import { LinguagemService } from '../services/linguagem.service';
 import { ScanService } from '../services/scan.service';
+import { Utils } from '../utils/models/utils';
 
 @Component({
   selector: 'app-home-scan',
@@ -175,7 +176,7 @@ export class HomeScanComponent implements OnInit {
       return false;
     }
     
-    if(isNullOrUndefined(this.imagem.id)) {
+    if(isNullOrUndefined(this.imagem.id) || Utils.idInvalido(this.imagem.id)) {
       this.gravarImagem();
     } 
     else {
