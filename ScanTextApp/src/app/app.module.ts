@@ -13,7 +13,7 @@ import { AlertModule } from 'ngx-alerts';
 import { NavbarScanComponent } from './navbar-scan/navbar-scan.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FooterScanComponent } from './footer-scan/footer-scan.component';
-import { ImagemProcessadaScanModule } from './components/imagem-processada-scan/imagem-processada-scan.module';
+import { ImagemProcessadaScanModule } from './components/consulta-imagem-processada-scan/imagem-processada-scan.module';
 import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
 
 @NgModule({
