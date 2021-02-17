@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeScanComponent } from './home-scan/home-scan.component';
-import { ImagemProcessadaScanComponent } from './components/imagem-processada-scan/imagem-processada-scan.component';
+import { ConsultaImagemProcessadaScanComponent } from './components/imagem-processada-scan/consulta-imagem-processada-scan.component';
 
 const routes: Routes = [
   {
@@ -13,8 +13,8 @@ const routes: Routes = [
     component: HomeScanComponent
   },
   {
-    path: 'imagens-digitalizadas',
-    component: ImagemProcessadaScanComponent
+    path: 'consulta-imagens-processadas',
+    component: ConsultaImagemProcessadaScanComponent
   },
   {
     path: '**',

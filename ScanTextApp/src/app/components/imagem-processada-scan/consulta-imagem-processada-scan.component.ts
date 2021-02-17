@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 declare let $: any;
 
 @Component({
-  selector: 'app-imagem-processada-scan',
-  templateUrl: './imagem-processada-scan.component.html',
-  styleUrls: ['./imagem-processada-scan.component.css'],
+  selector: 'app-consulta-imagem-processada-scan',
+  templateUrl: './consulta-imagem-processada-scan.component.html',
+  styleUrls: ['./consulta-imagem-processada-scan.component.css'],
   providers: [DatePipe, PercentPipe]
 })
-export class ImagemProcessadaScanComponent implements OnInit {
+export class ConsultaImagemProcessadaScanComponent implements OnInit {
 
   paginationFilter: PaginationFilter;
   loading: boolean = false;

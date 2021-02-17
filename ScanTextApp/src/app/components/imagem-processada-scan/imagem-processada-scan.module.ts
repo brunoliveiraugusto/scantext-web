@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ImagemProcessadaScanComponent } from './imagem-processada-scan.component';
+import { ConsultaImagemProcessadaScanComponent } from './consulta-imagem-processada-scan.component';
 import { PageTitleScanModule } from '../../page-title-scan/page-title-scan.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AlertModule } from 'ngx-alerts';
@@ -8,7 +8,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
-    ImagemProcessadaScanComponent
+    ConsultaImagemProcessadaScanComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +18,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     NgxDatatableModule
   ],
   exports: [
-    ImagemProcessadaScanComponent
+    ConsultaImagemProcessadaScanComponent
   ]
 })
 export class ImagemProcessadaScanModule { }
