@@ -59,6 +59,14 @@
     display: inline;
 }
 
+.display-contents {
+    display: contents;
+}
+
+.display-inherit {
+    display: inherit;
+}
+
 .no-padding-margin {
     padding: 0px;
     margin: 0px;

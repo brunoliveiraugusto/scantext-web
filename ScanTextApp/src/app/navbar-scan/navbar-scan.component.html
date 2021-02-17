@@ -1,8 +1,14 @@
 <nav class="navbar navbar-light bg-light background-color-blue margin-bottom-form navbar-fixed z-index-navbar">
-    <i class="bi-house-door-fill icon-size margin-bottom-icon cursor-pointer" title="Digitalizar" (click)="navigateTo('home-scan')"></i>
-    <ul class="navbar-nav mr-auto margin-left-link cursor-pointer">
-        <li class="nav-item">
-            <a class="nav-link text-bolder color-white" (click)="navigateTo('consulta-imagens-processadas')">Imagens Processadas</a>
+    <ul class="navbar-nav mr-auto margin-left-link cursor-pointer display-contents" (click)="navigateTo('home-scan')">
+        <li class="nav-item display-inherit">
+            <i class="bi-house-door-fill icon-size margin-icon"></i>
+            <a class="nav-link text-bolder color-white">Home</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav mr-auto margin-left-link cursor-pointer" (click)="navigateTo('consulta-imagens-processadas')">
+        <li class="nav-item display-inherit">
+            <i class="bi-search icon-size margin-icon margin-top-icon"></i>
+            <a class="nav-link text-bolder color-white">Consultar</a>
         </li>
     </ul>
 </nav>
