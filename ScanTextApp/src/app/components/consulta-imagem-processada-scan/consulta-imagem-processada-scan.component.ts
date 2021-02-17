@@ -47,9 +47,21 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
     this.carregarImagensPaginacao(this.page);
   }
 
+  sort(event) {
+    this.page.sort = event.sorts[0].prop;
+    this.page.ascendant = event.sorts[0].dir == "asc" ? true : false;
+    this.carregarImagensPaginacao(this.page);
+  }
+
+  setFieldsSort() {
+    this.paginationFilter.ascendant = this.page.ascendant;
+    this.paginationFilter.sort = this.page.sort;
+  }
+
   carregarImagensPaginacao(page?: any) {
     this.Loading();
     this.paginationFilter.page = page.offset + 1;
+    this.setFieldsSort();
     this.imagemService.post('obter-imagens-paginacao', this.paginationFilter)
     .subscribe((res) => {
       this.paginationFilter = res as any;

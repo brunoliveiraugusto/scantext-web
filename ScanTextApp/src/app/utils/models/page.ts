@@ -4,4 +4,5 @@ export class Page {
     number: number = 0;
     offset: number = 0;
     sort: string;
+    ascendant: boolean;
 }

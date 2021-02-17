@@ -5,4 +5,6 @@ export class PaginationFilter {
     page: number;
     total: number = 0;
     pages: Array<any>;
+    sort: string;
+    ascendant: boolean;
 }
