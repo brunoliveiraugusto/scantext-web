@@ -61,8 +61,14 @@
                 <span>{{imagem.meanConfidence * 100 | number : '1.2-2'}}%</span>
             </div>
         </div>
-        <div *ngIf="imagem.texto" class="col-md-6 col-lg-6 div-scan-img background-color box-shadow margin-bottom-form overflow-scoll">
+        <div *ngIf="imagem.texto" class="col-md-6 col-lg-6 div-scan-img background-color box-shadow margin-bottom-form" id="text-img">
             <p class="margin-25">{{imagem.texto}}</p>
+            <div class="upper-lower-case cursor-pointer" (click)="transformText()">
+                <i class="bi-type"></i>
+            </div>
+            <div class="copy cursor-pointer" (click)="copyText()">
+                <i class="bi-stickies"></i>
+            </div>
         </div>
     </div>
     <div *ngIf="imagem.texto" class="offset-md-5 offset-lg-5 col-md-6 col-lg-6 margin-bottom-form row" id="btn-gravar">

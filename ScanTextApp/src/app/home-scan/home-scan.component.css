@@ -22,3 +22,18 @@
 .margin-25 {
     margin: 25px;
 }
+
+.copy {
+    position: absolute;
+    margin: 0;
+    top: 90%;
+    right: 2%;
+}
+
+.upper-lower-case {
+    position: absolute;
+    margin: 0;
+    top: 88%;
+    right: 6%;
+    font-size: 22px;
+}

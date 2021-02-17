@@ -247,4 +247,21 @@ export class HomeScanComponent implements OnInit {
   definirLinguagemSelecionada(linguagem) {
     this.linguagemSelecionada = [{ id: linguagem.id, idioma: linguagem.idioma }];
   }
+
+  copyText() {
+    var range = document.createRange();
+    range.selectNode(document.getElementById("text-img"));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+  }
+
+  transformText() {
+    let texto = this.imagem.texto;
+    if(texto === this.imagem.texto.toUpperCase())
+      this.imagem.texto = texto.toLowerCase();
+    else 
+      this.imagem.texto = texto.toUpperCase();
+  }
 }
