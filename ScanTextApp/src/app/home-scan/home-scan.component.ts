@@ -140,7 +140,8 @@ export class HomeScanComponent implements OnInit {
   scrollToBottom() {
     setTimeout (() => {
       let divBtnGravar = document.getElementById("btn-gravar");
-      window.scrollTo({ top: divBtnGravar.scrollWidth, behavior: 'smooth' });
+      if(divBtnGravar)
+        window.scrollTo({ top: divBtnGravar.scrollWidth, behavior: 'smooth' });
     }, 200);
   }
 
