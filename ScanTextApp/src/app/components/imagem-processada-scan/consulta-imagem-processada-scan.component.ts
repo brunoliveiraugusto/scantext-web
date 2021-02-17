@@ -5,6 +5,7 @@ import { DatePipe, PercentPipe } from '@angular/common';
 import { Page } from 'src/app/utils/models/page';
 import { SelectionType } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
+import { AlertService } from 'ngx-alerts';
 
 declare let $: any;
 
@@ -35,7 +36,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
 
   constructor(private imagemService: ImagemService, 
       private datePipe: DatePipe, private percentPipe: PercentPipe,
-      private router: Router) { 
+      private router: Router, private alertService: AlertService) { 
     this.paginationFilter = new PaginationFilter();
     this.page.number = 1;
     this.page.limit = 5;
@@ -47,7 +48,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   }
 
   carregarImagensPaginacao(page?: any) {
-    this.showLoading();
+    this.Loading();
     this.paginationFilter.page = page.offset + 1;
     this.imagemService.post('obter-imagens-paginacao', this.paginationFilter)
     .subscribe((res) => {
@@ -57,9 +58,9 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
       this.page.total = this.paginationFilter.total;
       this.rowSelected = null;
       this.setRowsDatatable();
-      this.showLoading();
+      this.Loading();
     }, (err) => {
-      this.showLoading();
+      this.Loading();
     });
   }
 
@@ -77,7 +78,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
     });
   }
 
-  showLoading() {
+  Loading() {
     this.loading = !this.loading;
   }
 
@@ -87,5 +88,16 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
 
   editarImagem() {
     this.router.navigate(['/home-scan'], { queryParams: { id: this.rowSelected.id }});
+  }
+
+  excluirImagem() {
+    this.Loading();
+    this.imagemService.delete("", this.rowSelected.id)
+    .subscribe((res) => {
+      this.alertService.success("A imagem foi removida com sucesso.");
+      this.Loading();
+      this.carregarImagensPaginacao(this.page);
+      this.rowSelected = {};
+    }); 
   }
 }

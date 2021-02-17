@@ -37,4 +37,8 @@ export class BaseHttpService<T> {
   public put(action: string = '', body: any, id: string): Observable<ScanResponse<any>> {
     return this._http.put<ScanResponse<any>>(`${this.baseUrl}/${this.resource}/${action}${id}`, body);
   }
+
+  public delete(action: string = '', id: string): Observable<ScanResponse<any>> {
+    return this._http.delete<ScanResponse<any>>(`${this.baseUrl}/${this.resource}/${action}${id}`);
+  }
 }
