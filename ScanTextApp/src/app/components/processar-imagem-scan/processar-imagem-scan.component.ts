@@ -9,11 +9,11 @@ import { ScanService } from '../../services/scan.service';
 import { Utils } from '../../utils/models/utils';
 
 @Component({
-  selector: 'app-home-scan',
-  templateUrl: './home-scan.component.html',
-  styleUrls: ['./home-scan.component.css']
+  selector: 'app-processar-imagem-scan',
+  templateUrl: './processar-imagem-scan.component.html',
+  styleUrls: ['./processar-imagem-scan.component.css']
 })
-export class HomeScanComponent implements OnInit {
+export class ProcessarImagemScanComponent implements OnInit {
 
   public linguagens: any;
   public modelos: any;

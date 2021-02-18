@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeScanComponent } from './components/home-scan/home-scan.component';
+import { ProcessarImagemScanComponent } from './components/processar-imagem-scan/processar-imagem-scan.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -19,7 +19,7 @@ import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeScanComponent,
+    ProcessarImagemScanComponent,
     NavbarScanComponent,
     FooterScanComponent
   ],
@@ -36,7 +36,7 @@ import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
     PageTitleScanModule
   ],
   exports: [
-    HomeScanComponent
+    ProcessarImagemScanComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
