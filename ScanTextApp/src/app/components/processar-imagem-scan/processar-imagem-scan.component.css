@@ -24,16 +24,16 @@
 }
 
 .copy {
-    position: fixed;
+    position: absolute;
     margin: 0;
-    top: 467px;
-    right: 31%;
+    top: 335px;
+    right: 4%;
 }
 
 .upper-lower-case {
-    position: fixed;
+    position: absolute;
     margin: 0;
-    top: 461px;
-    right: 33%;
+    top: 329px;
+    right: 9%;
     font-size: 22px;
 }
