@@ -5,11 +5,11 @@ import { ConsultaImagemProcessadaScanComponent } from './components/consulta-ima
 
 const routes: Routes = [
   {
-    path: 'processar-imagem-scan',
+    path: 'processar-imagem',
     component: ProcessarImagemScanComponent
   },
   {
-    path: 'processar-imagem-scan/:id',
+    path: 'processar-imagem/:id',
     component: ProcessarImagemScanComponent
   },
   {
