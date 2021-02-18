@@ -9,7 +9,7 @@
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item cursor-pointer" (click)="editarImagem()">Editar</a>
-                <a class="dropdown-item cursor-pointer" (click)="excluirImagem()">Excluir</a>
+                <a class="dropdown-item cursor-pointer" (click)="abrirModalExclusao()">Excluir</a>
               </div>
         </div>
     </div>
@@ -37,3 +37,10 @@
     </div>
 </div>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>
+<app-modal-scan
+    [text-body]="'Confirma a exclusão da imagem selecionada?'"
+    [title]="'Excluir Imagem'"
+    [btn-yes]="'Sim'"
+    [btn-no]="'Não'"
+    (response)="validarExclusaoImagem($event)">
+</app-modal-scan>

@@ -5,6 +5,7 @@ import { PageTitleScanModule } from '../../page-title-scan/page-title-scan.modul
 import { NgxLoadingModule } from 'ngx-loading';
 import { AlertModule } from 'ngx-alerts';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ModalScanModule } from '../../utils/modal/modal-scan/modal-scan.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     PageTitleScanModule,
     NgxLoadingModule.forRoot({}),
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
-    NgxDatatableModule
+    NgxDatatableModule,
+    ModalScanModule
   ],
   exports: [
     ConsultaImagemProcessadaScanComponent

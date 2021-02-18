@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImagemService } from 'src/app/services/imagem.service';
 import { PaginationFilter } from 'src/app/utils/models/pagination-filter';
 import { DatePipe, PercentPipe } from '@angular/common';
@@ -6,6 +6,7 @@ import { Page } from 'src/app/utils/models/page';
 import { SelectionType } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
+import { ModalScanComponent } from '../../utils/modal/modal-scan/modal-scan.component';
 
 declare let $: any;
 
@@ -16,6 +17,8 @@ declare let $: any;
   providers: [DatePipe, PercentPipe]
 })
 export class ConsultaImagemProcessadaScanComponent implements OnInit {
+
+  @ViewChild('modal', {static: false}) modal: ModalScanComponent;
 
   paginationFilter: PaginationFilter;
   loading: boolean = false;
@@ -45,6 +48,10 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   ngOnInit() {
     $('.dropdown-toggle').dropdown();
     this.carregarImagensPaginacao(this.page);
+  }
+
+  ngAfterViewInit() {
+    this.modal = new ModalScanComponent();
   }
 
   sort(event) {
@@ -102,6 +109,13 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
     this.router.navigate(['/home-scan'], { queryParams: { id: this.rowSelected.id }});
   }
 
+  validarExclusaoImagem(response: boolean) {
+    if(response) {
+      this.modal.close();
+      this.excluirImagem();
+    }
+  }
+
   excluirImagem() {
     this.Loading();
     this.imagemService.delete("", this.rowSelected.id)
@@ -111,5 +125,9 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
       this.carregarImagensPaginacao(this.page);
       this.rowSelected = {};
     }); 
+  }
+
+  abrirModalExclusao() {
+    this.modal.open();
   }
 }

@@ -77,6 +77,11 @@
     border: 1px solid #337ab7;
 }
 
+.btn-secondary-scan {
+    background-color: #A3A3A3;
+    border: 1px solid #A3A3A3;
+}
+
 .container-scan {
     margin-bottom: 90px;
 }
