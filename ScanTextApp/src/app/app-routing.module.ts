@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeScanComponent } from './home-scan/home-scan.component';
+import { HomeScanComponent } from './components/home-scan/home-scan.component';
 import { ConsultaImagemProcessadaScanComponent } from './components/consulta-imagem-processada-scan/consulta-imagem-processada-scan.component';
 
 const routes: Routes = [
