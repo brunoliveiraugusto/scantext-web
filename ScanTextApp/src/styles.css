@@ -93,3 +93,7 @@
 .overflow-scoll {
     overflow-y: scroll;
 }
+
+.overflow-auto {
+    overflow: auto;
+}
