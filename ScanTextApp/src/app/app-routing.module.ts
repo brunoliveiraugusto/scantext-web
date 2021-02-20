@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '',
     component: HomeScanComponent,
     children: [
+      { path: '', redirectTo: 'processar-imagem', pathMatch: 'full' },
       { path: 'processar-imagem', component: ProcessarImagemScanComponent },
       { path: 'processar-imagem/:id', component: ProcessarImagemScanComponent },
       { path: 'consulta-imagens-processadas', component: ConsultaImagemProcessadaScanComponent },
@@ -22,8 +23,7 @@ const routes: Routes = [
     path: '',
     component: AuthenticationScanComponent,
     children: [
-      { path: 'login', component: LoginScanComponent },
-      { path: '**', component: LoginScanComponent }
+      { path: 'login', component: LoginScanComponent }
     ]
   } 
 ];
