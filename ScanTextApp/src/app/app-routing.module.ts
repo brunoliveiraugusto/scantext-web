@@ -21,6 +21,12 @@ const routes: Routes = [
   },
   {
     path: '',
+    loadChildren: () => import('./utils/components/not-found/not-found-scan/not-found-scan.module')
+      .then(m => m.NotFoundScanModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '',
     component: AuthenticationScanComponent,
     children: [
       { path: 'login', component: LoginScanComponent }

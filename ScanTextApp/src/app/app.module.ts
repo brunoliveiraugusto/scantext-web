@@ -18,6 +18,7 @@ import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
 import { LoginScanComponent } from './login/components/login-scan/login-scan.component';
 import { AuthenticationScanComponent } from './login/components/authentication-scan/authentication-scan.component';
 import { HomeScanComponent } from './home/home-scan/home-scan.component';
+import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/not-found-scan.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HomeScanComponent } from './home/home-scan/home-scan.component';
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
     NgxLoadingModule.forRoot({}),
     ImagemProcessadaScanModule,
-    PageTitleScanModule
+    PageTitleScanModule,
+    NotFoundScanModule
   ],
   exports: [
     ProcessarImagemScanComponent
