@@ -15,13 +15,19 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { FooterScanComponent } from './footer-scan/footer-scan.component';
 import { ImagemProcessadaScanModule } from './components/imagem/consulta-imagem-processada-scan/imagem-processada-scan.module';
 import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
+import { LoginScanComponent } from './login/components/login-scan/login-scan.component';
+import { AuthenticationScanComponent } from './login/components/authentication-scan/authentication-scan.component';
+import { HomeScanComponent } from './home/home-scan/home-scan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProcessarImagemScanComponent,
     NavbarScanComponent,
-    FooterScanComponent
+    FooterScanComponent,
+    LoginScanComponent,
+    AuthenticationScanComponent,
+    HomeScanComponent
   ],
   imports: [
     BrowserModule,
