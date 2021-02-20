@@ -31,7 +31,9 @@ const routes: Routes = [
     children: [
       { path: 'login', component: LoginScanComponent }
     ]
-  } 
+  }, 
+  { path: '**', redirectTo: 'not-found-scan', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'login', pathMatch: 'full'} 
 ];
 
 @NgModule({

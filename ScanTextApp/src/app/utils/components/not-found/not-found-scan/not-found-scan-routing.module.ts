@@ -4,8 +4,7 @@ import { NotFoundScanComponent } from './not-found-scan.component';
 
 
 const routes: Routes = [
-  { path: '**', redirectTo: 'not-found-scan', pathMatch: 'full' },
-  { path: 'not-found-scan', component: NotFoundScanComponent}
+  { path: 'not-found-scan', component: NotFoundScanComponent }
 ];
 
 @NgModule({
