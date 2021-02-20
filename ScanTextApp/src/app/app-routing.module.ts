@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProcessarImagemScanComponent } from './components/processar-imagem-scan/processar-imagem-scan.component';
-import { ConsultaImagemProcessadaScanComponent } from './components/consulta-imagem-processada-scan/consulta-imagem-processada-scan.component';
+import { ProcessarImagemScanComponent } from './components/imagem/processar-imagem-scan/processar-imagem-scan.component';
+import { ConsultaImagemProcessadaScanComponent } from './components/imagem/consulta-imagem-processada-scan/consulta-imagem-processada-scan.component';
 
 const routes: Routes = [
   {

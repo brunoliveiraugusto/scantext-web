@@ -6,7 +6,7 @@ import { Page } from 'src/app/utils/models/page';
 import { SelectionType } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
-import { ModalScanComponent } from '../../utils/modal/modal-scan/modal-scan.component';
+import { ModalScanComponent } from '../../../utils/modal/modal-scan/modal-scan.component';
 
 declare let $: any;
 

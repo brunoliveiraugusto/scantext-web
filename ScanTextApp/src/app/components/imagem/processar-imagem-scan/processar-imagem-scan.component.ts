@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { isNullOrUndefined } from 'util';
-import { Imagem } from '../../models/imagem';
-import { ImagemService } from '../../services/imagem.service';
-import { LinguagemService } from '../../services/linguagem.service';
-import { ScanService } from '../../services/scan.service';
-import { Utils } from '../../utils/models/utils';
+import { Imagem } from '../../../models/imagem';
+import { ImagemService } from '../../../services/imagem.service';
+import { LinguagemService } from '../../../services/linguagem.service';
+import { ScanService } from '../../../services/scan.service';
+import { Utils } from '../../../utils/models/utils';
 
 @Component({
   selector: 'app-processar-imagem-scan',
