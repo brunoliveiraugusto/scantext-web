@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundScanComponent } from '../not-found-scan/not-found-scan.component';
+import { NotFoundScanComponent } from './not-found-scan.component';
 
 
 const routes: Routes = [

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotFoundScanComponent } from './not-found-scan.component';
-import { NotFoundScanRoutingModule } from '../not-found-routing-scan/not-found-scan-routing.module';
+import { NotFoundScanRoutingModule } from './not-found-scan-routing.module';
 
 
 @NgModule({
