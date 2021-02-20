@@ -116,3 +116,7 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #5a8bb6; 
 }
+
+.text-center {
+    text-align: center;
+}
