@@ -13,10 +13,19 @@
   margin: 0 5px 8px 0;
 }
 
+.icon-person {
+  font-size: 25px;
+  margin-top: -2px;
+}
+
 .margin-left-link {
   margin-left: 15px;
 }
 
 .margin-top-icon {
   margin-top: 2px;
+}
+
+.margin-right {
+  margin-right: 10px !important;
 }

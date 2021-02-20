@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarScanComponent implements OnInit {
 
+  loading: boolean = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -17,4 +19,15 @@ export class NavbarScanComponent implements OnInit {
     this.router.navigate(['/'+rota]);
   }
 
+  logout() {
+    this.Loading();
+    if(window.localStorage.getItem('token-scan'))
+      window.localStorage.removeItem('token-scan');
+    this.router.navigate(['login']);
+    this.Loading();
+  }
+
+  Loading() {
+    this.loading = !this.loading;
+  }
 }
