@@ -15,7 +15,6 @@ const routes: Routes = [
       { path: 'processar-imagem', component: ProcessarImagemScanComponent },
       { path: 'processar-imagem/:id', component: ProcessarImagemScanComponent },
       { path: 'consulta-imagens-processadas', component: ConsultaImagemProcessadaScanComponent },
-      { path: '**', component: ProcessarImagemScanComponent }
     ],
     canActivate: [AuthGuard]
   },
@@ -23,8 +22,8 @@ const routes: Routes = [
     path: '',
     component: AuthenticationScanComponent,
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' }, 
-      { path: 'login', component: LoginScanComponent }
+      { path: 'login', component: LoginScanComponent },
+      { path: '**', component: LoginScanComponent }
     ]
   } 
 ];
