@@ -106,7 +106,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   }
 
   editarImagem() {
-    this.router.navigate(['/home-scan'], { queryParams: { id: this.rowSelected.id }});
+    this.router.navigate(['/processar-imagem'], { queryParams: { id: this.rowSelected.id }});
   }
 
   validarExclusaoImagem(response: boolean) {
