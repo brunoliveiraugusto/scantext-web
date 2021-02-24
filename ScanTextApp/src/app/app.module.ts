@@ -19,6 +19,7 @@ import { LoginScanComponent } from './login/components/login-scan/login-scan.com
 import { AuthenticationScanComponent } from './login/components/authentication-scan/authentication-scan.component';
 import { HomeScanComponent } from './home/home-scan/home-scan.component';
 import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/not-found-scan.module';
+import { CadastroUsuarioScanComponent } from './login/components/cadastro-usuario-scan/cadastro-usuario-scan.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/
     FooterScanComponent,
     LoginScanComponent,
     AuthenticationScanComponent,
-    HomeScanComponent
+    HomeScanComponent,
+    CadastroUsuarioScanComponent
   ],
   imports: [
     BrowserModule,
