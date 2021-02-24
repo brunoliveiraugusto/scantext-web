@@ -27,13 +27,14 @@
     position: absolute;
     margin: 0;
     top: 335px;
-    right: 4%;
+    right: 67%;
+    font-size: 20px;
 }
 
 .upper-lower-case {
     position: absolute;
     margin: 0;
-    top: 329px;
-    right: 9%;
+    top: 303px;
+    right: 67%;
     font-size: 22px;
 }

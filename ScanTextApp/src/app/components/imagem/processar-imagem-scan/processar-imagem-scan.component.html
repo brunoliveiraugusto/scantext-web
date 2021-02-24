@@ -54,19 +54,21 @@
             <button type="button" class="btn btn-danger">Limpar</button>
         </div> -->
     </div>
-    <div class="row">
-        <div *ngIf="imagem.texto" class="col-md-3 col-lg-3 margin-bottom-form">
+    <div class="row" *ngIf="imagem.texto">
+        <div class="col-md-3 col-lg-3 margin-bottom-form">
             <div class="col-md-12">
                 <span class="text-bolder display-block">Assertividade de Leitura: </span>
                 <span>{{imagem.meanConfidence * 100 | number : '1.2-2'}}%</span>
             </div>
         </div>
-        <div *ngIf="imagem.texto" class="col-md-6 col-lg-6 div-scan-img background-color box-shadow margin-bottom-form overflow-auto" id="text-img">
+        <div class="col-md-6 col-lg-6 div-scan-img background-color box-shadow margin-bottom-form overflow-auto" id="text-img">
             <p class="margin-25">{{imagem.texto}}</p>
-            <div class="upper-lower-case cursor-pointer" (click)="transformText()">
+        </div>
+        <div class="col-md-1 col-lg-1">
+            <div class="upper-lower-case cursor-pointer display-block" (click)="transformText()" title="Maiúsculo/Minúsculo">
                 <i class="bi-type"></i>
             </div>
-            <div class="copy cursor-pointer" (click)="copyText()">
+            <div class="copy cursor-pointer display-block" (click)="copyText()" title="Copiar">
                 <i class="bi-stickies"></i>
             </div>
         </div>
