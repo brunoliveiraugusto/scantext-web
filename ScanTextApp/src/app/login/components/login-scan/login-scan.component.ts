@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { LoginService } from 'src/app/services/login.service';
 
+declare let $: any;
+
 @Component({
   selector: 'app-login-scan',
   templateUrl: './login-scan.component.html',
@@ -19,6 +21,7 @@ export class LoginScanComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router, private alertService: AlertService) { }
 
   ngOnInit() {
+    //this.slideDown();
   }
 
   login() {
@@ -36,5 +39,9 @@ export class LoginScanComponent implements OnInit {
 
   Loading() {
     this.loading = !this.loading;
+  }
+
+  slideDown() {
+    $('.form-login').slideToggle(400);
   }
 }
