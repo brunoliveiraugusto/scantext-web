@@ -6,6 +6,7 @@ import { LoginScanComponent } from './login/components/login-scan/login-scan.com
 import { AuthGuard } from './login/shared/auth.guard';
 import { AuthenticationScanComponent } from './login/components/authentication-scan/authentication-scan.component';
 import { HomeScanComponent } from './home/home-scan/home-scan.component';
+import { CadastroUsuarioScanComponent } from './login/components/cadastro-usuario-scan/cadastro-usuario-scan.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
     path: '',
     component: AuthenticationScanComponent,
     children: [
-      { path: 'login', component: LoginScanComponent }
+      { path: 'login', component: LoginScanComponent },
+      { path: 'cadastrar', component: CadastroUsuarioScanComponent }
     ]
   }, 
   { path: '**', redirectTo: 'not-found-scan', pathMatch: 'full', canActivate: [AuthGuard] },
