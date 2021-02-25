@@ -14,6 +14,9 @@
         <div class="form-group offset-md-3 col-md-6">
             <button type="submit" class="btn btn-primary btn-block btn-primary-scan" (click)="login()">Entrar</button>
         </div>
+        <div class="form-group offset-md-3 col-md-6">
+            <button type="button" class="btn btn-primary btn-block btn-primary-scan" (click)="navigateTo('cadastrar')">Criar Usuário</button>
+        </div>
     </form>
 </div>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>

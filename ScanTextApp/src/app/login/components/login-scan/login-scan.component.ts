@@ -44,4 +44,8 @@ export class LoginScanComponent implements OnInit {
   slideDown() {
     $('.form-login').slideToggle(400);
   }
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
 }
