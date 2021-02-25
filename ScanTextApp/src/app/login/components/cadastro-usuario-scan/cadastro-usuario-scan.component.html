@@ -1,1 +1,32 @@
-<p>cadastro-usuario-scan works!</p>
+<div class="container col-md-12 col-lg-12 margin-top form-login">
+    <div class="col-md-12 text-center">
+        <h2>Cadastre-se</h2>
+    </div>
+    <form>
+        <div class="form-group offset-md-3 col-md-6 col-lg-6">
+            <label for="inputUsuario">Usuário <i class="text-required">*</i></label>
+            <input type="email" class="form-control" id="inputUsuario" [(ngModel)]="user.username" aria-describedby="usuarioHelp" placeholder="Usuário" name="username">
+        </div>
+        <div class="form-group offset-md-3 col-md-6 col-lg-6">
+            <label for="inputSenha">Senha <i class="text-required">*</i></label>
+            <input type="password" class="form-control" id="inputSenha" [(ngModel)]="user.password" placeholder="Senha" name="password">
+        </div>
+        <div class="form-group offset-md-3 col-md-6 col-lg-6">
+            <label for="inputEmail">E-mail <i class="text-required">*</i></label>
+            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="user.email" placeholder="E-mail" name="email">
+        </div>
+        <div class="form-group offset-md-3 col-md-6 col-lg-6">
+            <label for="inputDataNascimento">Data de Nascimento <i class="text-required">*</i></label>
+            <input type="date" class="form-control" id="inputDataNascimento" [(ngModel)]="user.dataNascimento" name="data-nascimento">
+        </div>
+        <div class="form-group offset-md-3 col-md-6">
+            <button type="submit" class="btn btn-primary btn-block btn-primary-scan" (click)="login()">Cadastre-se</button>
+        </div>
+        <div class="form-group offset-md-3 col-md-6">
+            <span>
+                Caso já tenha um usuário, faça <a (click)="navigateTo('login')" class="cursor-pointer text-underline text-back black-color">login</a>.
+            </span>
+        </div>
+    </form>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>
