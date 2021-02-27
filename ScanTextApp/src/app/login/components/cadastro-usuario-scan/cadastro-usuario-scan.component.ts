@@ -34,6 +34,11 @@ export class CadastroUsuarioScanComponent implements OnInit {
       return false;
     }
 
+    if(isNullOrUndefined(this.usuario.nomeCompleto)) {
+      this.alertService.warning("O campo Nome Completo é obrigatório.");
+      return false;
+    }
+
     if(isNullOrUndefined(this.usuario.password)) {
       this.alertService.warning("O campo Senha é obrigatório.");
       return false;
