@@ -4,6 +4,7 @@ import { AlertService } from 'ngx-alerts';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { isNullOrUndefined } from 'util';
+import { Role } from '../../shared/role';
 
 @Component({
   selector: 'app-cadastro-usuario-scan',
@@ -59,6 +60,7 @@ export class CadastroUsuarioScanComponent implements OnInit {
   criarUsuario() {
     if(this.indicaUsuarioValido()) {
       this.Loading();
+      this.usuario.role = Role.UsuarioComum;
       this.usuarioService.post('', this.usuario) 
       .subscribe((res) => {
         this.alertService.success("Usuário criado com sucesso.");
