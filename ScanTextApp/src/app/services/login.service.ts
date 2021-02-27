@@ -1,27 +1,30 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Login } from '../models/login';
+import { BaseHttpService } from './base-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService extends BaseHttpService<any> {
 
-  users: Array<any>;
-
-  constructor() { 
-    this.users = [{username: 'bruno.augusto', password: '12345678'}];
+  constructor(http: HttpClient) { 
+    super(http, 'login')
   }
 
-  async login(user: any) {
+  async login(dadosLogin: Login) {
     return new Promise<boolean>((resolve) => {
-      if(user) {
-        let isUserValid = this.users.some(u => u.username == user.username && u.password == user.password);
-        if(isUserValid) {
-          window.localStorage.setItem('token-scan','token2934');
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      }
-    });
+      this.post('login', dadosLogin)
+      .subscribe((res) => {
+        this.setTokenLocalStorage(res);
+        resolve(true);
+      }, (err) => {
+        resolve(false);
+      });
+    })
+  }
+
+  setTokenLocalStorage(token: any) {
+    localStorage.setItem("token-scan", JSON.stringify(token));
   }
 }
