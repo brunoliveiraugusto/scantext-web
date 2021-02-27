@@ -51,6 +51,10 @@
     cursor: pointer;
 }
 
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
 .margin-top {
     margin-top: 68px;
 }
