@@ -3,7 +3,12 @@
     left: 0;
     bottom: 0;
     height: 75px;
-    position: fixed;
     background-color: black;
     text-align: center;
+}
+
+.copyright {
+    margin: 0;
+    left: 50%;
+    margin-top: 24px;
 }

@@ -9,10 +9,14 @@ import { Router } from '@angular/router';
 export class NavbarScanComponent implements OnInit {
 
   loading: boolean = false;
+  nomeUsuarioLogado: string;
+  isMobile: boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.getNomeUsuarioLogado();
+    this.isMobile = this.getIsMobile();
   }
 
   navigateTo(rota: string) {
@@ -29,5 +33,14 @@ export class NavbarScanComponent implements OnInit {
 
   Loading() {
     this.loading = !this.loading;
+  }
+
+  getNomeUsuarioLogado() {
+    let token = JSON.parse(localStorage.getItem("token-scan"));
+    this.nomeUsuarioLogado = token.nomeCompleto.split(" ")[0];
+  }
+
+  getIsMobile() {
+    return (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
   }
 }
