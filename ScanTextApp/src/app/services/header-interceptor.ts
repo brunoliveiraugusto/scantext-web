@@ -9,7 +9,8 @@ export class HeaderInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = JSON.parse(localStorage.getItem('token-scan')).token;
+        const token = localStorage.getItem('token-scan') != null ?
+            JSON.parse(localStorage.getItem('token-scan')).token : null;
         const request = req.clone({
             setHeaders: {
                 'Authorization': 'Bearer ' + token,
