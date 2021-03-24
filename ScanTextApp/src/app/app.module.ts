@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProcessarImagemScanComponent } from './components/imagem/processar-imagem-scan/processar-imagem-scan.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -20,6 +20,7 @@ import { AuthenticationScanComponent } from './login/components/authentication-s
 import { HomeScanComponent } from './home/home-scan/home-scan.component';
 import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/not-found-scan.module';
 import { CadastroUsuarioScanComponent } from './login/components/cadastro-usuario-scan/cadastro-usuario-scan.component';
+import { HeaderInterceptor } from './services/header-interceptor';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { CadastroUsuarioScanComponent } from './login/components/cadastro-usuari
   exports: [
     ProcessarImagemScanComponent
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
