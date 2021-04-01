@@ -5,6 +5,7 @@
     height: 75px;
     background-color: black;
     text-align: center;
+    position: fixed !important;
 }
 
 .copyright {

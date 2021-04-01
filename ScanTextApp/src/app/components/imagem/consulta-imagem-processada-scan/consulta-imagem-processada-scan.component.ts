@@ -69,7 +69,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
     this.Loading();
     this.paginationFilter.page = page.offset + 1;
     this.setFieldsSort();
-    this.imagemService.post('obter-imagens-paginacao', this.paginationFilter)
+    this.imagemService.post('obter-imagens-paginacao-por-usuario', this.paginationFilter)
     .subscribe((res) => {
       this.paginationFilter = res as any;
       this.page.limit = this.paginationFilter.limit;

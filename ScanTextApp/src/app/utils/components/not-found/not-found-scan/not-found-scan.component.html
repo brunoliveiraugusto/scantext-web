@@ -1,8 +1,15 @@
 <div class="container offset-md-3 offset-lg-3 col-md-6 col-lg-6 text-center margin-top">
     <h1>404 <i class="bi-emoji-frown"></i></h1>
     <h2>Página não encontrada</h2>
-    <h4>Nós não encontramos a página que você está procurando, por favor,
-        vá para <a (click)="navigateTo('processar-imagem')" class="cursor-pointer text-underline black-color">digitalizar imagens</a>
-        ou para <a (click)="navigateTo('consulta-imagens-processadas')" class="cursor-pointer text-underline black-color">consulta de imagens processadas</a>.
-    </h4>
+    <h4>Não conseguimos encontrar a página que você está procurando, por favor, selecione uma das opções abaixo:</h4>
+    <h5>
+        <ul class="text-left">
+            <li>
+                <a (click)="navigateTo('processar-imagem')" class="cursor-pointer text-underline black-color">Digitalizar imagens</a>
+            </li>
+            <li>
+                <a (click)="navigateTo('consulta-imagens-processadas')" class="cursor-pointer text-underline black-color">Consultar imagens processadas</a>
+            </li>
+        </ul>
+    </h5>
 </div>
