@@ -7,6 +7,7 @@ import { SelectionType } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { ModalScanComponent } from '../../../utils/modal/modal-scan/modal-scan.component';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 declare let $: any;
 
@@ -37,9 +38,18 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
     { name: 'Data Cadastro' }
   ];
 
+  mensagemModal: string;
+  tituloModal: string;
+  btnPrimary: string;
+  btnSecond: string;
+  indicaEnvioEmail: boolean = false;
+
+  public emailUsuario: string;
+
   constructor(private imagemService: ImagemService, 
       private datePipe: DatePipe, private percentPipe: PercentPipe,
-      private router: Router, private alertService: AlertService) { 
+      private router: Router, private alertService: AlertService,
+      private usuarioService: UsuarioService) { 
     this.paginationFilter = new PaginationFilter();
     this.page.number = 1;
     this.page.limit = 5;
@@ -48,6 +58,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   ngOnInit() {
     $('.dropdown-toggle').dropdown();
     this.carregarImagensPaginacao(this.page);
+    this.carregarEmailUsuarioLogado();
   }
 
   ngAfterViewInit() {
@@ -109,11 +120,14 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
     this.router.navigate(['/processar-imagem'], { queryParams: { id: this.rowSelected.id }});
   }
 
-  validarExclusaoImagem(response: boolean) {
-    if(response) {
-      this.modal.close();
+  processReponseModal(response: any) {
+    if(!this.indicaEnvioEmail && response) { 
       this.excluirImagem();
+    } else if(this.indicaEnvioEmail && response) {
+      this.enviarDadosImagemEmail();
     }
+
+    this.modal.close();
   }
 
   excluirImagem() {
@@ -128,6 +142,38 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   }
 
   abrirModalExclusao() {
+    this.mensagemModal = "Confirma a exclusão da imagem selecionada?";
+    this.tituloModal = "Excluir Imagem";
+    this.btnPrimary = "Sim";
+    this.btnSecond = "Não";
+    this.indicaEnvioEmail = false;
     this.modal.open();
+  }
+
+  abrirModalEnvioEmail() {
+    this.mensagemModal = "O e-mail com os dados da imagem processada será enviado para o endereço de e-mail " + this.emailUsuario + "," +
+      " caso queira utilizar um novo e-mail, atualize no seu perfil.";
+    this.tituloModal = "Enviar E-mail Imagem Processada";
+    this.btnPrimary = "Enviar";
+    this.btnSecond = "Cancelar";
+    this.indicaEnvioEmail = true;
+    this.modal.open();
+  }
+
+  enviarDadosImagemEmail() {
+    const idImagem = this.rowSelected.id;
+    this.imagemService.post("enviar-email-imagem-processada/",  '"' + idImagem + '"')
+    .subscribe((res) => {
+      this.alertService.success("E-mail enviado com sucesso.");
+    }, (err) => {
+      this.alertService.danger("Erro ao enviar o e-mail, tente novamente.");
+    });
+  }
+
+  carregarEmailUsuarioLogado() {
+    this.usuarioService.getReponseString("obter-email-usuario-logado")
+    .subscribe((res) => {
+      this.emailUsuario = res as any;
+    });
   }
 }
