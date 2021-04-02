@@ -29,8 +29,12 @@ export class ModalScanComponent implements OnInit {
     $('#myModal').modal('hide');
   }
 
-  sendResponse(response: boolean) {
-    this.response.emit(response);
+  sendResponseBtnPrimary() {
+    this.response.emit(true);
+  }
+
+  sendResponseBtnSecond() {
+    this.response.emit(false);
   }
 
 }
