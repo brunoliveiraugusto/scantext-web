@@ -10,9 +10,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertModule } from 'ngx-alerts';
-import { NavbarScanComponent } from './navbar-scan/navbar-scan.component';
+import { NavbarScanModule } from './navbar-scan/navbar-scan.module';
 import { NgxLoadingModule } from 'ngx-loading';
-import { FooterScanComponent } from './footer-scan/footer-scan.component';
+import { FooterScanModule } from './footer-scan/footer-scan.module';
 import { ImagemProcessadaScanModule } from './components/imagem/consulta-imagem-processada-scan/imagem-processada-scan.module';
 import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
 import { LoginScanComponent } from './login/components/login-scan/login-scan.component';
@@ -21,14 +21,11 @@ import { MainScanComponent } from './main/main-scan/main-scan.component';
 import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/not-found-scan.module';
 import { CadastroUsuarioScanComponent } from './login/components/cadastro-usuario-scan/cadastro-usuario-scan.component';
 import { HeaderInterceptor } from './services/header-interceptor';
-import { UsuarioModule } from './components/usuario/usuario.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProcessarImagemScanComponent,
-    NavbarScanComponent,
-    FooterScanComponent,
     LoginScanComponent,
     AuthenticationScanComponent,
     MainScanComponent,
@@ -46,7 +43,8 @@ import { UsuarioModule } from './components/usuario/usuario.module';
     ImagemProcessadaScanModule,
     PageTitleScanModule,
     NotFoundScanModule,
-    UsuarioModule
+    NavbarScanModule,
+    FooterScanModule
   ],
   exports: [
     ProcessarImagemScanComponent
