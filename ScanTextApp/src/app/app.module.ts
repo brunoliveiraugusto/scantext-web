@@ -17,7 +17,7 @@ import { ImagemProcessadaScanModule } from './components/imagem/consulta-imagem-
 import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
 import { LoginScanComponent } from './login/components/login-scan/login-scan.component';
 import { AuthenticationScanComponent } from './login/components/authentication-scan/authentication-scan.component';
-import { HomeScanComponent } from './home/home-scan/home-scan.component';
+import { MainScanComponent } from './home/home-scan/main-scan.component';
 import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/not-found-scan.module';
 import { CadastroUsuarioScanComponent } from './login/components/cadastro-usuario-scan/cadastro-usuario-scan.component';
 import { HeaderInterceptor } from './services/header-interceptor';
@@ -31,7 +31,7 @@ import { UsuarioModule } from './components/configuração/usuario.module';
     FooterScanComponent,
     LoginScanComponent,
     AuthenticationScanComponent,
-    HomeScanComponent,
+    MainScanComponent,
     CadastroUsuarioScanComponent
   ],
   imports: [

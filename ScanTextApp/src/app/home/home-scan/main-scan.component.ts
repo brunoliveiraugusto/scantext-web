@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home-scan',
-  templateUrl: './home-scan.component.html',
+  selector: 'app-main-scan',
+  templateUrl: './main-scan.component.html',
   styleUrls: []
 })
-export class HomeScanComponent implements OnInit {
+export class MainScanComponent implements OnInit {
 
   constructor() { }
 

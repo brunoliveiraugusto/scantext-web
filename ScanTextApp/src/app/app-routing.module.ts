@@ -5,13 +5,13 @@ import { ConsultaImagemProcessadaScanComponent } from './components/imagem/consu
 import { LoginScanComponent } from './login/components/login-scan/login-scan.component';
 import { AuthGuard } from './login/shared/auth.guard';
 import { AuthenticationScanComponent } from './login/components/authentication-scan/authentication-scan.component';
-import { HomeScanComponent } from './home/home-scan/home-scan.component';
+import { MainScanComponent } from './home/home-scan/main-scan.component';
 import { CadastroUsuarioScanComponent } from './login/components/cadastro-usuario-scan/cadastro-usuario-scan.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeScanComponent,
+    component: MainScanComponent,
     children: [
       { path: '', redirectTo: 'processar-imagem', pathMatch: 'full' },
       { path: 'processar-imagem', component: ProcessarImagemScanComponent },
