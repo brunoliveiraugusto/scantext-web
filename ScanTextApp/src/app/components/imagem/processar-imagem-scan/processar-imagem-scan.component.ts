@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
+import { RouterComponentsEnum } from 'src/app/utils/enums/router-components-enum';
 import { isNullOrUndefined } from 'util';
 import { Imagem } from '../../../models/imagem';
 import { ImagemService } from '../../../services/imagem.service';
@@ -191,6 +192,7 @@ export class ProcessarImagemScanComponent implements OnInit {
     .subscribe((res) => {
       this.alertService.success("A imagem e os dados processados foram salvos com sucesso.");
       this.Loading();
+      this.redirectTo(RouterComponentsEnum.ConsultaImagem.router);
     }, (error) => {
       this.alertService.danger("Erro ao salvar a imagem.");
       this.Loading();
@@ -203,6 +205,7 @@ export class ProcessarImagemScanComponent implements OnInit {
     .subscribe((res) => {
       this.alertService.success("A imagem e os dados processados foram atualizados com sucesso.");
       this.Loading();
+      this.redirectTo(RouterComponentsEnum.ConsultaImagem.router);
     },(err) => {
       this.Loading();
       this.alertService.danger("Erro ao atualizar a imagem.");
@@ -263,5 +266,9 @@ export class ProcessarImagemScanComponent implements OnInit {
       this.imagem.texto = texto.toLowerCase();
     else 
       this.imagem.texto = texto.toUpperCase();
+  }
+
+  redirectTo(router: string) {
+    this.router.navigate([router]);
   }
 }
