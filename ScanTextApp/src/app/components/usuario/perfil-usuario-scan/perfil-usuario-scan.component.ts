@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-perfil-usuario-scan',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilUsuarioScanComponent implements OnInit {
 
-  constructor() { }
+  usuario: Usuario;
+
+  constructor() { 
+    this.usuario = new Usuario();
+  }
 
   ngOnInit() {
   }
