@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { PerfilUsuarioScanComponent } from './perfil-usuario-scan/perfil-usuario-scan.component';
 import { UsuarioRoutingModule } from './usuario-routing.module';
+import { MainUsuarioScanComponent } from './main-usuario-scan/main-usuario-scan.component';
 
 
 @NgModule({
   declarations: [
-    PerfilUsuarioComponent
+    PerfilUsuarioScanComponent,
+    MainUsuarioScanComponent
   ],
   imports: [
     CommonModule,
     UsuarioRoutingModule
   ],
   exports: [
-    PerfilUsuarioComponent
+    PerfilUsuarioScanComponent
   ]
 })
 export class UsuarioModule { }

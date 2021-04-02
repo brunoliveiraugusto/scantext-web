@@ -21,7 +21,7 @@ import { MainScanComponent } from './main/main-scan/main-scan.component';
 import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/not-found-scan.module';
 import { CadastroUsuarioScanComponent } from './login/components/cadastro-usuario-scan/cadastro-usuario-scan.component';
 import { HeaderInterceptor } from './services/header-interceptor';
-import { UsuarioModule } from './components/configuração/usuario.module';
+import { UsuarioModule } from './components/usuário/usuario.module';
 
 @NgModule({
   declarations: [
