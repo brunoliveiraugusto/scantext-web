@@ -8,6 +8,7 @@
                 Ações
               </button>
               <div class="dropdown-menu">
+                <a class="dropdown-item cursor-pointer" (click)="abrirModalEnvioEmail()">Enviar E-mail</a>
                 <a class="dropdown-item cursor-pointer" (click)="editarImagem()">Editar</a>
                 <a class="dropdown-item cursor-pointer" (click)="abrirModalExclusao()">Excluir</a>
               </div>
@@ -38,9 +39,9 @@
 </div>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>
 <app-modal-scan
-    [text-body]="'Confirma a exclusão da imagem selecionada?'"
-    [title]="'Excluir Imagem'"
-    [btn-yes]="'Sim'"
-    [btn-no]="'Não'"
-    (response)="validarExclusaoImagem($event)">
+    [text-body]="mensagemModal"
+    [title]="tituloModal"
+    [btn-yes]="btnPrimary"
+    [btn-no]="btnSecond"
+    (response)="processReponseModal($event)">
 </app-modal-scan>
