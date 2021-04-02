@@ -22,6 +22,10 @@ export class BaseHttpService<T> {
     return this._http.get<ScanResponse<T>>(`${this.baseUrl}/${this.resource}/${action}`);
   }
 
+  public getReponseString(action: string): Observable<string> {
+    return this._http.get(`${this.baseUrl}/${this.resource}/${action}`, { responseType: "text" });
+  }
+
   public getById(action: string = '', id: string): Observable<ScanResponse<T>> {
     return this._http.get<ScanResponse<T>>(`${this.baseUrl}/${this.resource}/${action}${id}`);
   }
