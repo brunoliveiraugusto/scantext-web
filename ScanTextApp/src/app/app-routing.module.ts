@@ -22,6 +22,12 @@ const routes: Routes = [
   },
   {
     path: '',
+    loadChildren: () => import('./components/usuario/usuario.module')
+      .then(m => m.UsuarioModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '',
     loadChildren: () => import('./utils/components/not-found/not-found-scan/not-found-scan.module')
       .then(m => m.NotFoundScanModule),
     canActivate: [AuthGuard]
