@@ -72,7 +72,7 @@ export class CadastroUsuarioScanComponent implements OnInit {
         this.Loading();
         this.navigateTo('login');
       }, (err) => {
-        this.alertService.danger("Erro ao tentar criar um novo usuário.");
+        this.alertService.danger("Não foi possível se cadastrar, tente novamente.");
         this.Loading();
       });
     }
@@ -93,7 +93,7 @@ export class CadastroUsuarioScanComponent implements OnInit {
   }
 
   getQuery() {
-    return '?username='.concat(this.usuario.username);
+    return '?username='.concat(this.usuario.username).concat('&idUsuario=').concat(null);
   }
 
   public Loading() {
