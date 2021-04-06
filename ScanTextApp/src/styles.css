@@ -144,3 +144,14 @@
 .text-center {
     text-align: center;
 }
+
+.border-red {
+    border: 1px solid red;
+    box-shadow: 0 0 0 0.2rem rgb(253 79 79 / 25%) !important
+}
+
+.label-usuario-cadastrado {
+    font-size: 10px;
+    color: grey;
+    margin-bottom: 0;
+}
