@@ -93,7 +93,7 @@ export class CadastroUsuarioScanComponent implements OnInit {
   }
 
   getQuery() {
-    return '?username='.concat(this.usuario.username).concat('&idUsuario=').concat(null);
+    return '?username='.concat(this.usuario.username);
   }
 
   public Loading() {
