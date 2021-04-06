@@ -7,6 +7,7 @@ import { NavbarScanModule } from '../../navbar-scan/navbar-scan.module';
 import { FooterScanModule } from '../../footer-scan/footer-scan.module';
 import { AlertModule } from 'ngx-alerts';
 import { FormsModule } from '@angular/forms';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     NavbarScanModule,
     FooterScanModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
-    FormsModule
+    FormsModule,
+    NgxLoadingModule.forRoot({}),
   ],
   exports: [
     PerfilUsuarioScanComponent
