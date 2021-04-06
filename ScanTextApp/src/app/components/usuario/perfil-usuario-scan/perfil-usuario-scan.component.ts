@@ -29,10 +29,12 @@ export class PerfilUsuarioScanComponent implements OnInit {
   }
 
   carregarDadosCadastroUsuario() {
+    this.Loading();
     this.usuarioService.get("obter-dados-cadastro-usuario")
     .subscribe((res) => {
       this.usuario = res as any;
       this.formatarDataNascimento();
+      this.Loading();
     });
   }
 
