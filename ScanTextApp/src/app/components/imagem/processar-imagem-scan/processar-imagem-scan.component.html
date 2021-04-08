@@ -65,7 +65,10 @@
             <p class="margin-25">{{imagem.texto}}</p>
         </div>
         <div class="col-md-1 col-lg-1">
-            <div class="upper-lower-case cursor-pointer display-block" (click)="transformText()" title="Maiúsculo/Minúsculo">
+            <div class="qr-code cursor-pointer display-block" (click)="copyText()" title="QR Code">
+                <i class="bi-upc-scan"></i>
+            </div>
+            <div class="upper-lower-case cursor-pointer display-block" (click)="transformText()" title="Maiúsculo / Minúsculo">
                 <i class="bi-type"></i>
             </div>
             <div class="copy cursor-pointer display-block" (click)="copyText()" title="Copiar">

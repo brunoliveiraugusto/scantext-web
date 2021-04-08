@@ -38,3 +38,11 @@
     right: 67%;
     font-size: 22px;
 }
+
+.qr-code {
+    position: absolute;
+    margin: 0;
+    top: 276px;
+    right: 67%;
+    font-size: 20px;
+}
