@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
+import { QrCode } from 'src/app/models/qr-code';
 import { RouterComponentsEnum } from 'src/app/utils/enums/router-components-enum';
+import { ModalScanComponent } from 'src/app/utils/modal/modal-scan/modal-scan.component';
 import { isNullOrUndefined } from 'util';
 import { Imagem } from '../../../models/imagem';
 import { ImagemService } from '../../../services/imagem.service';
@@ -24,6 +26,12 @@ export class ProcessarImagemScanComponent implements OnInit {
   public imagem: Imagem;
   public loading: boolean = false;
 
+  qrCode: QrCode = new QrCode();
+  public mensagemModal: string;
+  public tituloModal: string;
+
+  @ViewChild('modalScan', {static: false}) modalScan: ModalScanComponent;
+
   constructor(private linguagemService: LinguagemService, 
       private scanService: ScanService,
       private alertService: AlertService,
@@ -38,7 +46,6 @@ export class ProcessarImagemScanComponent implements OnInit {
     this.carregarLinguagens();
     this.preencherModelos();
   }
-
 
   private selecionarImagem(event) {
     if(event.target.files != null && event.target.files.length == 1) {
@@ -270,5 +277,22 @@ export class ProcessarImagemScanComponent implements OnInit {
 
   redirectTo(router: string) {
     this.router.navigate([router]);
+  }
+
+  getQrCode() {
+    this.qrCode.text = this.imagem.texto;
+    this.scanService.post("obter-qr-code/", this.qrCode).subscribe(
+    (res) => {
+      const qrCode = res as any;
+      this.openQrCode(qrCode.code);
+    }, (err) => {
+      this.alertService.danger("Não foi possível gerar o QR Code do texto da imagem selecionada, tente novamente.");
+    });
+  }
+
+  openQrCode(base64: string) {
+    this.mensagemModal = base64;
+    this.tituloModal = `Texto QR Code - ${this.imagem.nome}`;
+    this.modalScan.open();
   }
 }

@@ -65,7 +65,7 @@
             <p class="margin-25">{{imagem.texto}}</p>
         </div>
         <div class="col-md-1 col-lg-1">
-            <div class="qr-code cursor-pointer display-block" (click)="copyText()" title="QR Code">
+            <div class="qr-code cursor-pointer display-block" (click)="getQrCode()" title="QR Code">
                 <i class="bi-upc-scan"></i>
             </div>
             <div class="upper-lower-case cursor-pointer display-block" (click)="transformText()" title="Maiúsculo / Minúsculo">
@@ -87,3 +87,11 @@
 </div>
 <input [hidden]="true" class="align-btn-new" type="file" (change)="selecionarImagem($event)" accept="application/pdf, image/*" #file>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>
+<app-modal-scan
+    #modalScan
+    [text-body]="mensagemModal"
+    [title]="tituloModal"
+    [show-btn-yes]="false"
+    [show-btn-no]="false"
+    [text-body-is-base64]="true">
+</app-modal-scan>
