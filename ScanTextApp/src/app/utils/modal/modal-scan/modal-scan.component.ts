@@ -11,8 +11,11 @@ export class ModalScanComponent implements OnInit {
 
   @Input("title") title: string;
   @Input("text-body") textBody: string;
+  @Input("text-body-is-base64") textBodyIsBase64: boolean = false;
   @Input("btn-yes") btnYes: string;
   @Input("btn-no") btnNo: string;
+  @Input("show-btn-yes") showBtnYes: boolean = true;
+  @Input("show-btn-no") ShowBtnNo: boolean = true;
   @Output("response") response = new EventEmitter<boolean>();
 
   constructor() { 
