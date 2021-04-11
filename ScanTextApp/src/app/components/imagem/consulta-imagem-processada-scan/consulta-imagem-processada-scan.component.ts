@@ -151,9 +151,9 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   }
 
   abrirModalEnvioEmail() {
-    this.mensagemModal = "O e-mail com os dados da imagem processada será enviado para o endereço de e-mail " + this.emailUsuario + "," +
-      " caso queira utilizar um novo e-mail, atualize no seu perfil.";
-    this.tituloModal = "Enviar E-mail Imagem Processada";
+    this.mensagemModal = "As informações da imagem selecionada serão enviadas para o endereço de e-mail " + this.emailUsuario + "," +
+      " caso queira utilizar um novo endereço e-mail, atualize no seu perfil.";
+    this.tituloModal = "Enviar E-mail";
     this.btnPrimary = "Enviar";
     this.btnSecond = "Cancelar";
     this.indicaEnvioEmail = true;
