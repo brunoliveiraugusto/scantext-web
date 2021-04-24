@@ -280,12 +280,15 @@ export class ProcessarImagemScanComponent implements OnInit {
   }
 
   getQrCode() {
+    this.Loading();
     this.qrCode.text = this.imagem.texto;
     this.scanService.post("obter-qr-code/", this.qrCode).subscribe(
     (res) => {
       const qrCode = res as any;
+      this.Loading();
       this.openQrCode(qrCode.code);
     }, (err) => {
+      this.Loading();
       this.alertService.danger("Não foi possível gerar o QR Code do texto da imagem selecionada, tente novamente.");
     });
   }
