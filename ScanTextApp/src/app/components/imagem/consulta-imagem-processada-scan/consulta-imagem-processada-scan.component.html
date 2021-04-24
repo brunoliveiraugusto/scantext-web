@@ -38,10 +38,15 @@
     </div>
 </div>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>
+
 <app-modal-scan
-    [text-body]="mensagemModal"
+    #modal
     [title]="tituloModal"
     [btn-yes]="btnPrimary"
     [btn-no]="btnSecond"
     (response)="processReponseModal($event)">
 </app-modal-scan>
+
+<ng-template #modalBodyTemplate>
+    <p>As informações da imagem selecionada serão enviadas para o endereço de e-mail <b>{{emailUsuario}}</b>, caso queira utilizar um novo endereço e-mail, atualize no seu perfil.</p>
+</ng-template>

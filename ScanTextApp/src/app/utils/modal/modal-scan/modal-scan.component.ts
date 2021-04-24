@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ContentChild, TemplateRef } from '@angular/core';
 
 declare let $: any;
 
@@ -17,6 +17,7 @@ export class ModalScanComponent implements OnInit {
   @Input("show-btn-yes") showBtnYes: boolean = true;
   @Input("show-btn-no") ShowBtnNo: boolean = true;
   @Output("response") response = new EventEmitter<boolean>();
+  @ContentChild('modalBodyTemplate', { static: false }) modalBodyTemplate: TemplateRef<any>;
 
   constructor() { 
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ImagemService } from 'src/app/services/imagem.service';
 import { PaginationFilter } from 'src/app/utils/models/pagination-filter';
 import { DatePipe, PercentPipe } from '@angular/common';
@@ -19,7 +19,8 @@ declare let $: any;
 })
 export class ConsultaImagemProcessadaScanComponent implements OnInit {
 
-  @ViewChild('modal', {static: false}) modal: ModalScanComponent;
+  @ViewChild('modal', { static: false }) modal: ModalScanComponent;
+  @ViewChild('modalBodyTemplate', { static: false }) modalBodyTemplate: TemplateRef<any>;
 
   paginationFilter: PaginationFilter;
   loading: boolean = false;
@@ -59,10 +60,6 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
     $('.dropdown-toggle').dropdown();
     this.carregarImagensPaginacao(this.page);
     this.carregarEmailUsuarioLogado();
-  }
-
-  ngAfterViewInit() {
-    this.modal = new ModalScanComponent();
   }
 
   sort(event) {
@@ -151,8 +148,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   }
 
   abrirModalEnvioEmail() {
-    this.mensagemModal = "As informações da imagem selecionada serão enviadas para o endereço de e-mail " + this.emailUsuario + "," +
-      " caso queira utilizar um novo endereço e-mail, atualize no seu perfil.";
+    this.modal.modalBodyTemplate = this.modalBodyTemplate;
     this.tituloModal = "Enviar E-mail";
     this.btnPrimary = "Enviar";
     this.btnSecond = "Cancelar";

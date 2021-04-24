@@ -7,12 +7,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" *ngIf="!textBodyIsBase64">
+            <div class="modal-body" *ngIf="!textBodyIsBase64 && !modalBodyTemplate">
                 {{textBody}}
             </div>
-            <div class="modal-body text-center" *ngIf="textBodyIsBase64">
+            <div class="modal-body" *ngIf="!textBodyIsBase64 && modalBodyTemplate">
+                <ng-template [ngTemplateOutlet]="modalBodyTemplate"></ng-template>
+            </div>
+            <div class="modal-body text-center" *ngIf="textBodyIsBase64 && !modalBodyTemplate">
                 <img src="data:image/png;base64,{{textBody}}" alt="" width="90%" height="90%"/>
             </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-secondary-scan" 
                     data-dismiss="modal" (click)="sendResponseBtnSecond()" *ngIf="ShowBtnNo">{{btnNo}}</button>
