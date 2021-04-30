@@ -117,6 +117,10 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
     this.router.navigate(['/processar-imagem'], { queryParams: { id: this.rowSelected.id }});
   }
 
+  navigateTo(rota: string): void {
+    this.router.navigate([rota]);
+  }
+
   processReponseModal(response: any) {
     if(!this.indicaEnvioEmail && response) { 
       this.excluirImagem();

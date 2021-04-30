@@ -49,5 +49,5 @@
 </app-modal-scan>
 
 <ng-template #modalBodyTemplate>
-    <p>As informações da imagem selecionada serão enviadas para o endereço de e-mail <b>{{emailUsuario}}</b>, caso queira utilizar um novo endereço e-mail, atualize no seu perfil.</p>
+    <p>As informações da imagem selecionada serão enviadas para o endereço de e-mail <b>{{emailUsuario}}</b>, caso queira utilizar um novo endereço e-mail, atualize no seu <a href="javascript:void(0)" (click)="modal.close(); navigateTo('perfil')">perfil</a>.</p>
 </ng-template>
