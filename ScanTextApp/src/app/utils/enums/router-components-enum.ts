@@ -1,4 +1,4 @@
-export const RouterComponentsEnum = {
-    ProcessarImagem : { router: "processar-imagem" },
-    ConsultaImagem : { router: "consulta-imagens-processadas" },
+export enum RouterComponentsEnum {
+    RouterProcessarImagem = "processar-imagem",
+    RouterConsultaImagem = "consulta-imagens-processadas"
 }

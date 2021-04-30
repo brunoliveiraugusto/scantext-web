@@ -200,7 +200,7 @@ export class ProcessarImagemScanComponent implements OnInit {
     .subscribe((res) => {
       this.alertService.success("A imagem e os dados processados foram salvos com sucesso.");
       this.Loading();
-      this.redirectTo(RouterComponentsEnum.ConsultaImagem.router);
+      this.redirectTo(RouterComponentsEnum.RouterConsultaImagem);
     }, (error) => {
       this.alertService.danger("Erro ao salvar a imagem.");
       this.Loading();
@@ -213,7 +213,7 @@ export class ProcessarImagemScanComponent implements OnInit {
     .subscribe((res) => {
       this.alertService.success("A imagem e os dados processados foram atualizados com sucesso.");
       this.Loading();
-      this.redirectTo(RouterComponentsEnum.ConsultaImagem.router);
+      this.redirectTo(RouterComponentsEnum.RouterConsultaImagem);
     },(err) => {
       this.Loading();
       this.alertService.danger("Erro ao atualizar a imagem.");
