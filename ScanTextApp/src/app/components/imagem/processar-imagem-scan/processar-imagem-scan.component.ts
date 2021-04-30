@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { QrCode } from 'src/app/models/qr-code';
+import { BodyTypeEnum } from 'src/app/utils/enums/body-type-enum';
 import { RouterComponentsEnum } from 'src/app/utils/enums/router-components-enum';
 import { ModalScanComponent } from 'src/app/utils/modal/modal-scan/modal-scan.component';
 import { isNullOrUndefined } from 'util';
@@ -294,6 +295,7 @@ export class ProcessarImagemScanComponent implements OnInit {
   }
 
   openQrCode(base64: string) {
+    this.modalScan.setContentBody(BodyTypeEnum.IsBase64);
     this.mensagemModal = base64;
     this.tituloModal = `Texto QR Code - ${this.imagem.nome}`;
     this.modalScan.open();

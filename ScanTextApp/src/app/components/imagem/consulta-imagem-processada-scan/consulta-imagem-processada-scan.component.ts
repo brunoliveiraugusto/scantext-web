@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { ModalScanComponent } from '../../../utils/modal/modal-scan/modal-scan.component';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { BodyTypeEnum } from 'src/app/utils/enums/body-type-enum';
 
 declare let $: any;
 
@@ -143,6 +144,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   }
 
   abrirModalExclusao() {
+    this.modal.setContentBody(BodyTypeEnum.IsText);
     this.mensagemModal = "Confirma a exclusão da imagem selecionada?";
     this.tituloModal = "Excluir Imagem";
     this.btnPrimary = "Sim";
@@ -152,6 +154,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   }
 
   abrirModalEnvioEmail() {
+    this.modal.setContentBody(BodyTypeEnum.IsTemplate);
     this.modal.modalBodyTemplate = this.modalBodyTemplate;
     this.tituloModal = "Enviar E-mail";
     this.btnPrimary = "Enviar";
