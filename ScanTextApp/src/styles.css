@@ -159,3 +159,8 @@
     color: grey;
     margin-bottom: 0;
 }
+
+.checkbox-scan {
+    width: 16px !important;
+    height: 16px !important;
+}
