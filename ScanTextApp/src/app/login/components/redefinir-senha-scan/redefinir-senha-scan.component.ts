@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -15,7 +16,7 @@ export class RedefinirSenhaScanComponent implements OnInit {
   
   mensagemModal: string;
 
-  constructor(private usuarioService: UsuarioService, private alertService: AlertService) { }
+  constructor(private usuarioService: UsuarioService, private alertService: AlertService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -42,7 +43,17 @@ export class RedefinirSenhaScanComponent implements OnInit {
   }
 
   enviarEmailRedefinicaoSenha() {
-    
+    this.Loading();
+    this.usuarioService.post(`enviar-email-redefinicao-senha?username=${this.username}`, null).subscribe(
+    (res) => {
+      this.Loading();
+      this.alertService.success("E-mail enviado com sucesso.")
+      this.router.navigate(['login']);
+    }, 
+    (err) => {
+      this.Loading();
+      this.alertService.danger(err.errors[0].valor);
+    });
   }
 
   Loading() {
