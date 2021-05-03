@@ -31,7 +31,7 @@ export class RedefinirSenhaScanComponent implements OnInit {
     (res) => {
       this.Loading();
       if(res.data == null) {
-        this.alertService.warning("Não foi possível encontrar sua conta com essa informação, verifique o usuário informado.");
+        this.alertService.warning("Não foi possível encontrar sua conta, verifique o usuário informado.");
       } else {
         this.atualizarListaContatosRedefinicaoSenha(res.data);
       }
@@ -48,7 +48,7 @@ export class RedefinirSenhaScanComponent implements OnInit {
     (res) => {
       this.Loading();
       this.alertService.success("E-mail enviado com sucesso.")
-      this.router.navigate(['login']);
+      this.navigateTo('login');
     }, 
     (err) => {
       this.Loading();
@@ -58,6 +58,10 @@ export class RedefinirSenhaScanComponent implements OnInit {
 
   Loading() {
     this.loading = !this.loading;
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 
 }
