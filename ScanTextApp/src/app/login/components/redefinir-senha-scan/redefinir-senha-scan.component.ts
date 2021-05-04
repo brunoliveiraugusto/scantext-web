@@ -52,7 +52,7 @@ export class RedefinirSenhaScanComponent implements OnInit {
     }, 
     (err) => {
       this.Loading();
-      this.alertService.danger(err.errors[0].valor);
+      this.alertService.danger(err.error.errors[0].valor);
     });
   }
 
