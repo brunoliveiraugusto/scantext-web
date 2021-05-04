@@ -6,24 +6,24 @@
         <div class="form-group offset-md-3 col-md-6 col-lg-6">
             <label for="inputUsuario">Usuário <i class="text-required">*</i></label>
             <input type="text" class="form-control" id="inputUsuario" [(ngModel)]="usuario.username" 
-                placeholder="Usuário" name="username" (keyup)="verificarUsuarioExistente()"
+                placeholder="Digite seu usuário" name="username" (keyup)="verificarUsuarioExistente()"
                 [ngClass]="{ 'border-red': indicaUsuarioExistente }">
             <label *ngIf="indicaUsuarioExistente" class="label-usuario-cadastrado">Usuário já cadastrado</label>
         </div>
         <div class="form-group offset-md-3 col-md-6 col-lg-6">
             <label for="inputSenha">Senha <i class="text-required">*</i></label>
-            <input type="password" class="form-control" id="inputSenha" [(ngModel)]="usuario.password" placeholder="Senha" name="password" 
+            <input type="password" class="form-control" id="inputSenha" [(ngModel)]="usuario.password" placeholder="Digite sua senha" name="password" 
                 [disabled]="indicaUsuarioExistente" [ngClass]="{'cursor-not-allowed' : indicaUsuarioExistente}">
         </div>
         <div class="form-group offset-md-3 col-md-6 col-lg-6">
             <label for="inputUsuario">Nome Completo <i class="text-required">*</i></label>
             <input type="text" class="form-control" id="inputNomeCompleto" [(ngModel)]="usuario.nomeCompleto" 
-                placeholder="Nome Completo" name="nome-completo"
+                placeholder="Digite seu nome completo" name="nome-completo"
                 [disabled]="indicaUsuarioExistente" [ngClass]="{'cursor-not-allowed' : indicaUsuarioExistente}">
         </div>
         <div class="form-group offset-md-3 col-md-6 col-lg-6">
             <label for="inputEmail">E-mail <i class="text-required">*</i></label>
-            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="usuario.email" placeholder="E-mail" name="email" 
+            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="usuario.email" placeholder="Digite seu e-mail" name="email" 
                 [disabled]="indicaUsuarioExistente" [ngClass]="{'cursor-not-allowed' : indicaUsuarioExistente}">
         </div>
         <div class="form-group offset-md-3 col-md-6 col-lg-6">
