@@ -9,13 +9,15 @@ import { AlertModule } from 'ngx-alerts';
 import { NgxLoadingModule } from 'ngx-loading';
 import { RedefinirSenhaScanComponent } from './components/redefinir-senha-scan/redefinir-senha-scan.component';
 import { ModalScanModule } from '../utils/modal/modal-scan/modal-scan.module';
+import { AtualizarSenhaScanComponent } from './components/atualizar-senha-scan/atualizar-senha-scan.component';
 
 @NgModule({
   declarations: [
     AuthenticationScanComponent,
     CadastroUsuarioScanComponent,
     LoginScanComponent,
-    RedefinirSenhaScanComponent
+    RedefinirSenhaScanComponent,
+    AtualizarSenhaScanComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { ModalScanModule } from '../utils/modal/modal-scan/modal-scan.module';
     AuthenticationScanComponent,
     CadastroUsuarioScanComponent,
     LoginScanComponent,
-    RedefinirSenhaScanComponent
+    RedefinirSenhaScanComponent,
+    AtualizarSenhaScanComponent
   ]
 })
 export class AuthenticationModule { }
