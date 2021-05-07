@@ -115,10 +115,12 @@ export class ProcessarImagemScanComponent implements OnInit {
       return false;
     
     this.Loading();
-    this.scanService.post('', this.imagem)
+    const imagemTesseract = this.obterDadosParaLeitura(this.imagem);
+    this.scanService.post('ler-imagem', imagemTesseract)
     .subscribe((res) => {
-      let imagem = res as any;
-      this.imagem = imagem;
+      const imagem = res.data;
+      this.imagem.meanConfidence = imagem.meanConfidence;
+      this.imagem.texto = imagem.texto;
       if(this.imagem.meanConfidence <= 0 || isNullOrUndefined(this.imagem.texto)) {
         this.alertService.warning("Erro ao processar a imagem.");
       } else {
@@ -130,6 +132,10 @@ export class ProcessarImagemScanComponent implements OnInit {
       this.alertService.danger("Erro ao processar a imagem.");
     })
     this.scrollToBottom();
+  }
+
+  obterDadosParaLeitura(imagem: Imagem): any {
+    return { base64: imagem.base64, siglaLinguagem: imagem.linguagem.sigla };
   }
 
   indicaItensObrigatoriosSelecionados() {
@@ -283,9 +289,9 @@ export class ProcessarImagemScanComponent implements OnInit {
   getQrCode() {
     this.Loading();
     this.qrCode.text = this.imagem.texto;
-    this.scanService.post("obter-qr-code/", this.qrCode).subscribe(
+    this.scanService.post("gerar-qr-code/", this.qrCode).subscribe(
     (res) => {
-      const qrCode = res as any;
+      const qrCode = res.data;
       this.Loading();
       this.openQrCode(qrCode.code);
     }, (err) => {
