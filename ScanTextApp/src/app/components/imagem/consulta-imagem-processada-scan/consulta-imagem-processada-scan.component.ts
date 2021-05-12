@@ -179,4 +179,14 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
       this.emailUsuario = res as any;
     });
   }
+
+  downloadImagem() {
+    const imagem = this.paginationFilter.pages.find(x => x.id == this.rowSelected.id);
+    if(imagem == null) {
+      this.alertService.warning("Imagem não disponível para download.");
+      return;
+    }
+    
+    window.open(imagem.urlImagemBlob, "_blank");
+  }
 }
