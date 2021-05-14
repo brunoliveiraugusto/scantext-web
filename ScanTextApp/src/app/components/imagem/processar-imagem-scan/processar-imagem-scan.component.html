@@ -40,9 +40,10 @@
         </div>
         <div class="col-md-6 no-padding-margin">
             <div class="col-md-12 col-lg-12 div-scan-img background-color box-shadow margin-bottom-form cursor-pointer overflow-auto" (click)="file.click()"
-                [ngClass]="{'background-img-selected': imagem.base64}">
-                <label *ngIf="!imagem.base64" class="centralize">Selecione a imagem</label>
-                <img *ngIf="imagem.base64" src="{{imagem.base64}}" alt="" width="auto" height="auto"/>
+                [ngClass]="{'background-img-selected': imagem.base64 || imagem.urlImagemBlob}">
+                <label *ngIf="!imagem.base64 && !imagem.urlImagemBlob" class="centralize">Selecione a imagem</label>
+                <img *ngIf="imagem.base64 && !imagem.urlImagemBlob" src="{{imagem.base64}}" alt="" width="auto" height="auto"/>
+                <img *ngIf="imagem.urlImagemBlob && !imagem.base64" src="{{imagem.urlImagemBlob}}" alt="" width="auto" height="auto"/>
             </div>
         </div>
     </div>
