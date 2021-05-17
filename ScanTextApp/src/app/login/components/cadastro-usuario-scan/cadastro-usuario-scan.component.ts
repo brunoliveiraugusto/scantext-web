@@ -39,16 +39,6 @@ export class CadastroUsuarioScanComponent implements OnInit {
       return false;
     }
 
-    if(isNullOrUndefined(this.usuario.password)) {
-      this.alertService.warning("O campo Senha é obrigatório.");
-      return false;
-    }
-
-    if(this.usuario.password.length < 8) {
-      this.alertService.warning("O campo Senha deve conter no mínimo 8 caracteres.");
-      return false;
-    }
-
     if(isNullOrUndefined(this.usuario.email)) {
       this.alertService.warning("O campo E-mail é obrigatório.");
       return false;
@@ -68,7 +58,7 @@ export class CadastroUsuarioScanComponent implements OnInit {
       this.usuario.role = Role.UsuarioComum;
       this.usuarioService.post('', this.usuario) 
       .subscribe((res) => {
-        this.alertService.success("Usuário criado com sucesso.");
+        this.alertService.success("Usuário criado com sucesso. Por favor, acesse seu e-mail e siga as instruções para criar uma nova senha.");
         this.Loading();
         this.navigateTo('login');
       }, (err) => {

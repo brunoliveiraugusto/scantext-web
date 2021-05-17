@@ -11,11 +11,6 @@
             <label *ngIf="indicaUsuarioExistente" class="label-usuario-cadastrado">Usuário já cadastrado</label>
         </div>
         <div class="form-group offset-md-3 col-md-6 col-lg-6">
-            <label for="inputSenha">Senha <i class="text-required">*</i></label>
-            <input type="password" class="form-control" id="inputSenha" [(ngModel)]="usuario.password" placeholder="Digite sua senha" name="password" 
-                [disabled]="indicaUsuarioExistente" [ngClass]="{'cursor-not-allowed' : indicaUsuarioExistente}">
-        </div>
-        <div class="form-group offset-md-3 col-md-6 col-lg-6">
             <label for="inputUsuario">Nome Completo <i class="text-required">*</i></label>
             <input type="text" class="form-control" id="inputNomeCompleto" [(ngModel)]="usuario.nomeCompleto" 
                 placeholder="Digite seu nome completo" name="nome-completo"
