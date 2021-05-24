@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { InformacoesUsuario } from '../models/informacoes-usuario';
 
 @Component({
   selector: 'app-navbar-scan',
@@ -11,8 +12,11 @@ export class NavbarScanComponent implements OnInit {
   loading: boolean = false;
   nomeUsuarioLogado: string;
   isMobile: boolean = false;
+  informacoesUsuario: InformacoesUsuario;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    this.informacoesUsuario = new InformacoesUsuario();
+  }
 
   ngOnInit() {
     this.getNomeUsuarioLogado();

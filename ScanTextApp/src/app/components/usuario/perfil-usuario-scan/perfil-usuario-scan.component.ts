@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'ngx-alerts';
+import { InformacoesUsuario } from 'src/app/models/informacoes-usuario';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { isNullOrUndefined } from 'util';
@@ -14,17 +15,16 @@ import { isNullOrUndefined } from 'util';
 export class PerfilUsuarioScanComponent implements OnInit {
 
   usuario: Usuario;
-  usuarioInfo = { perfilUsuario: null, idUsuario: null };
+  informacoesUsuario: InformacoesUsuario;
   indicaUsuarioExistente: boolean = false;
   loading: boolean = false;
 
   constructor(private usuarioService: UsuarioService, private datePipe: DatePipe, private alertService: AlertService) { 
     this.usuario = new Usuario();
+    this.informacoesUsuario = new InformacoesUsuario();
   }
 
   ngOnInit() {
-    this.obterPerfilUsuario();
-    this.obterIdUsuario();
     this.carregarDadosCadastroUsuario();
   }
 
@@ -42,14 +42,6 @@ export class PerfilUsuarioScanComponent implements OnInit {
     this.usuario.dataNascimento = this.datePipe.transform(this.usuario.dataNascimento, "yyyy-MM-dd") as any;
   }
 
-  obterPerfilUsuario() {
-    this.usuarioInfo.perfilUsuario = JSON.parse(localStorage.getItem("token-scan")).role;
-  }
-
-  obterIdUsuario() {
-    this.usuarioInfo.idUsuario = JSON.parse(localStorage.getItem("token-scan")).id;
-  }
-
   verificarUsuarioExistente() {
     if(isNullOrUndefined(this.usuario.username) || this.usuario.username == "") {
       this.indicaUsuarioExistente = false;
@@ -65,7 +57,7 @@ export class PerfilUsuarioScanComponent implements OnInit {
   }
 
   getQuery() {
-    return '?username='.concat(this.usuario.username).concat('&idUsuario=').concat(this.usuarioInfo.idUsuario);
+    return '?username='.concat(this.usuario.username).concat('&idUsuario=').concat(this.informacoesUsuario.idUsuario);
   }
 
   indicaUsuarioValido() {
@@ -95,7 +87,7 @@ export class PerfilUsuarioScanComponent implements OnInit {
   atualizarDadosCadastroUsuario() {
     if(this.indicaUsuarioValido()) {
       this.Loading();
-      this.usuarioService.put("atualizar-dados-cadastro-usuario/", this.usuario, this.usuarioInfo.idUsuario)
+      this.usuarioService.put("atualizar-dados-cadastro-usuario/", this.usuario, this.informacoesUsuario.idUsuario)
       .subscribe((res) => {
         this.alertService.success("Seus dados foram atualizados com sucesso.");
         this.Loading();

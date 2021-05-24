@@ -16,6 +16,7 @@
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item cursor-pointer" (click)="navigateTo('perfil')">Perfil</a>
+                <a class="dropdown-item cursor-pointer" (click)="navigateTo('perfil')" *ngIf="informacoesUsuario.perfilUsuario == 'administrador'">Configurar</a>
                 <a class="dropdown-item cursor-pointer" (click)="logout()">Sair</a>
             </div>
         </div>
