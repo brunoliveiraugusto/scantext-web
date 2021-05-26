@@ -1,0 +1,126 @@
+import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'ngx-alerts';
+import { ArquivoIdioma } from 'src/app/models/arquivo-idioma';
+import { LinguagemService } from 'src/app/services/linguagem.service';
+import { ArquivoIdiomaService } from 'src/app/services/arquivo-idioma.service';
+import { InformacoesUsuario } from 'src/app/models/informacoes-usuario';
+
+@Component({
+  selector: 'app-configuracao-scan',
+  templateUrl: './configuracao-scan.component.html',
+  styleUrls: ['./configuracao-scan.component.css']
+})
+export class ConfiguracaoScanComponent implements OnInit {
+
+  arquivoIdioma: ArquivoIdioma;
+  idiomaSelecionado: any;
+  idiomas: any;
+  loading: boolean = false;
+  informacoesUsuario: InformacoesUsuario;
+
+  constructor(
+    private linguagemService: LinguagemService, 
+    private alertService: AlertService,
+    private arquivoIdiomaService: ArquivoIdiomaService
+  ) 
+  { 
+    this.arquivoIdioma = new ArquivoIdioma();
+    this.informacoesUsuario = new InformacoesUsuario();
+  }
+
+  ngOnInit() {
+    this.carregarIdiomas();
+  }
+
+  setSettingsDropdown(textField: string) {
+    return {
+      singleSelection: true,
+      idField: 'id',
+      textField: textField,
+      searchPlaceholderText: 'Pesquise',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true,
+      noDataAvailablePlaceholderText: 'Não há dados disponíveis',
+      closeDropDownOnSelection: true
+    };
+  }
+
+  selecionarLinguagemDropdown(event: any) {
+    this.arquivoIdioma.siglaIdioma = this.idiomas.filter((linguagem) => {
+      return linguagem.id == event.id;
+    })[0].sigla;
+  }
+
+  removerLinguagemSelecionada() {
+    this.arquivoIdioma.siglaIdioma = null;
+  }
+
+  carregarIdiomas() {
+    this.Loading();
+    this.linguagemService.getAll('carregar-linguagens-sem-arquivos-associados').subscribe((res) => {
+      this.idiomas = res.data;
+      this.Loading();
+    }, (err) => {
+      this.Loading();
+    });
+  }
+
+  selecionarArquivoIdioma(event: any) {
+    if(event.target.files != null && event.target.files.length == 1) {
+      var reader = new FileReader();
+      reader.onloadend = (e) => {
+        this.arquivoIdioma.arquivo = this.base64ToByteArray(reader.result as string);
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    } 
+    else if(event.target.files.length > 1) {
+      this.alertService.warning("Selecione um arquivo por vez.");
+    }
+  }
+
+  base64ToByteArray(base64: string) {
+    const arrayByte = new Array(base64.length);
+    for (let i = 0; i < base64.length; i++) {
+      arrayByte[i] = base64.charCodeAt(i);
+    }
+
+    return arrayByte;
+  }
+
+  cadastrarArquivoIdioma() {
+    if(this.indicaDadosArquivosIdiomaPreenchido()) {
+      this.Loading();
+      this.arquivoIdioma.idUsuario = this.informacoesUsuario.idUsuario;
+      this.arquivoIdiomaService.post('', this.arquivoIdioma).subscribe(
+      (res) => {
+        this.alertService.success("O Arquivo de Idioma foi salvo com sucesso.");
+        this.Loading();
+        this.carregarIdiomas();
+      }, 
+      (err) => {
+        this.alertService.danger("Erro ao tentar salvar o Arquivo de idioma, tente novamente.");
+        this.Loading();
+      });
+    }
+  }
+
+  indicaDadosArquivosIdiomaPreenchido() {
+    if(this.arquivoIdioma.siglaIdioma == null || this.arquivoIdioma.siglaIdioma == undefined) {
+      this.alertService.warning("O campo Idioma é obrigatório.");
+      return false;
+    }
+
+    if(this.arquivoIdioma.arquivo == null || this.arquivoIdioma.arquivo == undefined) {
+      this.alertService.warning("Por favor, selecione um arquivo.");
+      return false;
+    }
+
+    return true;
+  }
+
+  Loading() {
+    this.loading = !this.loading;
+  }
+}

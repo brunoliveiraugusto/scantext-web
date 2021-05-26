@@ -4,6 +4,7 @@ import { ProcessarImagemScanComponent } from './components/imagem/processar-imag
 import { ConsultaImagemProcessadaScanComponent } from './components/imagem/consulta-imagem-processada-scan/consulta-imagem-processada-scan.component';
 import { AuthGuard } from './login/shared/auth.guard';
 import { MainScanComponent } from './main/main-scan/main-scan.component';
+import { ConfiguracaoScanComponent } from './components/configurar/configuracao-scan/configuracao-scan.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'processar-imagem', component: ProcessarImagemScanComponent },
       { path: 'processar-imagem/:id', component: ProcessarImagemScanComponent },
       { path: 'consulta-imagens-processadas', component: ConsultaImagemProcessadaScanComponent },
+      { path: 'configuracao', component: ConfiguracaoScanComponent, }
     ],
     canActivate: [AuthGuard]
   },
@@ -35,7 +37,7 @@ const routes: Routes = [
       .then(m => m.AuthenticationModule)
   }, 
   { path: '**', redirectTo: 'not-found-scan', pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'login', pathMatch: 'full'} 
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

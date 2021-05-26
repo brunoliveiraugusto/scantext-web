@@ -20,6 +20,7 @@ import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/
 import { HeaderInterceptor } from './services/header-interceptor';
 import { ModalScanModule } from './utils/modal/modal-scan/modal-scan.module';
 import { AuthenticationModule } from './login/authentication.module';
+import { ConfigurarModule } from './components/configurar/configurar.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AuthenticationModule } from './login/authentication.module';
     NavbarScanModule,
     FooterScanModule,
     ModalScanModule,
-    AuthenticationModule
+    AuthenticationModule,
+    ConfigurarModule
   ],
   exports: [
     ProcessarImagemScanComponent

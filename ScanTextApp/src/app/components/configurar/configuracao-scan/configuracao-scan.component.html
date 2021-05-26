@@ -1,0 +1,61 @@
+<div class="container margin-top container-scan col-lg-10">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                <button class="btn collapsed black-color text-bolder" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Idioma
+                </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn black-color text-bolder" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Arquivo Idioma
+                    </button>
+                </h5>
+            </div>
+      
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body row">
+                    <div class="col-12 col-lg-6">
+                        <app-page-title-scan [page-name]="'Cadastrar'" [title-h6]="true" [icon]="'bi bi-file-earmark'"></app-page-title-scan>
+                        <div class="col-md-12">
+                            <form>
+                                <div class="form-group">
+                                    <label>Idioma <i class="text-required">*</i></label>
+                                    <ng-multiselect-dropdown
+                                        [placeholder]="'Selecione'"
+                                        [data]="idiomas"
+                                        [(ngModel)]="idiomaSelecionado"
+                                        [settings]="setSettingsDropdown('idioma')"
+                                        (onSelect)="selecionarLinguagemDropdown($event)"
+                                        (onDeSelect)="removerLinguagemSelecionada()">
+                                    </ng-multiselect-dropdown>
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" class="form-control-file" id="inputFileIdioma" (change)="selecionarArquivoIdioma($event)">
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary btn-primary-scan" (click)="cadastrarArquivoIdioma()">Cadastrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <app-page-title-scan [page-name]="'Ajustar'" [title-h6]="true" [icon]="'bi bi-wrench'"></app-page-title-scan>
+                        <span>Lista de Arquivos Cadastrados</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>

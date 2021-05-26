@@ -1,4 +1,6 @@
 <div class="col-md-12">
-    <h5 class="display-inline">{{pageName}} </h5><i class="{{icon}} icon-size"></i>
+    <h5 class="display-inline" *ngIf="!titleH6">{{pageName}} </h5>
+    <h6 class="display-inline" *ngIf="titleH6">{{pageName}} </h6>
+    <i class="{{icon}} icon-size"></i>
     <hr/>
 </div>

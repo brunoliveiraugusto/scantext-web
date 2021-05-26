@@ -9,6 +9,7 @@ export class PageTitleScanComponent implements OnInit {
 
   @Input("page-name") pageName: string;
   @Input("icon") icon: string;
+  @Input("title-h6") titleH6: boolean = false;
 
   constructor() { }
 
