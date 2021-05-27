@@ -1,6 +1,6 @@
 export class ArquivoIdioma {
-    arquivo: any[];
-    siglaIdioma: string;
+    arquivo: string;
+    idIdioma: string;
     dataCadastro: Date;
     dataAtualizacao: Date;
     idUsuario: string;

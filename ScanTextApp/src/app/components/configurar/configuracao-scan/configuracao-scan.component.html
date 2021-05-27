@@ -34,7 +34,6 @@
                                     <ng-multiselect-dropdown
                                         [placeholder]="'Selecione'"
                                         [data]="idiomas"
-                                        [(ngModel)]="idiomaSelecionado"
                                         [settings]="setSettingsDropdown('idioma')"
                                         (onSelect)="selecionarLinguagemDropdown($event)"
                                         (onDeSelect)="removerLinguagemSelecionada()">

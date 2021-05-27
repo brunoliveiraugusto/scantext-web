@@ -4,6 +4,7 @@ import { ArquivoIdioma } from 'src/app/models/arquivo-idioma';
 import { LinguagemService } from 'src/app/services/linguagem.service';
 import { ArquivoIdiomaService } from 'src/app/services/arquivo-idioma.service';
 import { InformacoesUsuario } from 'src/app/models/informacoes-usuario';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-configuracao-scan',
@@ -48,13 +49,13 @@ export class ConfiguracaoScanComponent implements OnInit {
   }
 
   selecionarLinguagemDropdown(event: any) {
-    this.arquivoIdioma.siglaIdioma = this.idiomas.filter((linguagem) => {
+    this.arquivoIdioma.idIdioma = this.idiomas.filter((linguagem) => {
       return linguagem.id == event.id;
-    })[0].sigla;
+    })[0].id;
   }
 
   removerLinguagemSelecionada() {
-    this.arquivoIdioma.siglaIdioma = null;
+    this.arquivoIdioma.idIdioma = null;
   }
 
   carregarIdiomas() {
@@ -71,22 +72,13 @@ export class ConfiguracaoScanComponent implements OnInit {
     if(event.target.files != null && event.target.files.length == 1) {
       var reader = new FileReader();
       reader.onloadend = (e) => {
-        this.arquivoIdioma.arquivo = this.base64ToByteArray(reader.result as string);
+        this.arquivoIdioma.arquivo = reader.result as string;
       }
       reader.readAsDataURL(event.target.files[0]);
     } 
     else if(event.target.files.length > 1) {
       this.alertService.warning("Selecione um arquivo por vez.");
     }
-  }
-
-  base64ToByteArray(base64: string) {
-    const arrayByte = new Array(base64.length);
-    for (let i = 0; i < base64.length; i++) {
-      arrayByte[i] = base64.charCodeAt(i);
-    }
-
-    return arrayByte;
   }
 
   cadastrarArquivoIdioma() {
@@ -100,19 +92,19 @@ export class ConfiguracaoScanComponent implements OnInit {
         this.carregarIdiomas();
       }, 
       (err) => {
-        this.alertService.danger("Erro ao tentar salvar o Arquivo de idioma, tente novamente.");
+        this.alertService.danger("Erro ao tentar salvar o Arquivo de Idioma, tente novamente.");
         this.Loading();
       });
     }
   }
 
   indicaDadosArquivosIdiomaPreenchido() {
-    if(this.arquivoIdioma.siglaIdioma == null || this.arquivoIdioma.siglaIdioma == undefined) {
+    if(this.arquivoIdioma.idIdioma == null || this.arquivoIdioma.idIdioma == undefined) {
       this.alertService.warning("O campo Idioma é obrigatório.");
       return false;
     }
 
-    if(this.arquivoIdioma.arquivo == null || this.arquivoIdioma.arquivo == undefined) {
+    if(isNullOrUndefined(this.arquivoIdioma.arquivo) || this.arquivoIdioma.arquivo == "") {
       this.alertService.warning("Por favor, selecione um arquivo.");
       return false;
     }
