@@ -126,4 +126,13 @@ export class ConfiguracaoScanComponent implements OnInit {
       this.arquivosIdioma = res.data as Array<ArquivoIdioma>;
     });
   }
+
+  apagarArquivoIdioma(id: string) {
+    this.arquivoIdiomaService.delete("", id).subscribe(
+    (res) => {
+      this.alertService.success("O Arquivo de Idioma foi removido com sucesso.");
+      this.carregarArquivosIdiomaCadastrados();
+      this.carregarIdiomas();
+    });
+  }
 }
