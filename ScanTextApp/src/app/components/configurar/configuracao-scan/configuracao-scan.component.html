@@ -49,8 +49,29 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
-                        <app-page-title-scan [page-name]="'Ajustar'" [title-h6]="true" [icon]="'bi bi-wrench'"></app-page-title-scan>
-                        <span>Lista de Arquivos Cadastrados</span>
+                        <app-page-title-scan [page-name]="'Arquivos Cadastrados'" [title-h6]="true" [icon]="'bi bi-card-text'"></app-page-title-scan>
+                        <div class="col-12 row text-bolder">
+                            <div class="col-4">
+                                <span>Idioma</span>
+                            </div>
+                            <div class="col-4">
+                                <span>Data Cadastro</span>
+                            </div>
+                        </div>
+                        <div class="col-12 row" *ngFor="let arquivoIdioma of arquivosIdioma">
+                            <div class="col-4">
+                                {{arquivoIdioma.idioma}}
+                            </div>
+                            <div class="col-4">
+                                {{arquivoIdioma.dataCadastro | date: 'dd/MM/yyyy'}}
+                            </div>
+                            <div class="col-1">
+                                <a href="{{arquivoIdioma.urlArquivoBlob}}" target="_blank" title="Download"><i class="bi bi-download"></i></a>
+                            </div>
+                            <div class="col-1 cursor-pointer text-red">
+                                <i class="bi bi-trash" (click)="apagarArquivoIdioma()" title="Apagar"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

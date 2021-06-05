@@ -18,6 +18,7 @@ export class ConfiguracaoScanComponent implements OnInit {
   idiomas: any;
   loading: boolean = false;
   informacoesUsuario: InformacoesUsuario;
+  arquivosIdioma: Array<ArquivoIdioma>;
 
   constructor(
     private linguagemService: LinguagemService, 
@@ -27,10 +28,12 @@ export class ConfiguracaoScanComponent implements OnInit {
   { 
     this.arquivoIdioma = new ArquivoIdioma();
     this.informacoesUsuario = new InformacoesUsuario();
+    this.arquivosIdioma = new Array<ArquivoIdioma>();
   }
 
   ngOnInit() {
     this.carregarIdiomas();
+    this.carregarArquivosIdiomaCadastrados();
   }
 
   setSettingsDropdown(textField: string) {
@@ -89,6 +92,7 @@ export class ConfiguracaoScanComponent implements OnInit {
       (res) => {
         this.alertService.success("O Arquivo de Idioma foi salvo com sucesso.");
         this.Loading();
+        this.arquivoIdioma = new ArquivoIdioma();
         this.carregarIdiomas();
       }, 
       (err) => {
@@ -114,5 +118,12 @@ export class ConfiguracaoScanComponent implements OnInit {
 
   Loading() {
     this.loading = !this.loading;
+  }
+
+  carregarArquivosIdiomaCadastrados() {
+    this.arquivoIdiomaService.getAll().subscribe(
+    (res) => {
+      this.arquivosIdioma = res.data as Array<ArquivoIdioma>;
+    });
   }
 }

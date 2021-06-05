@@ -164,3 +164,8 @@
     width: 16px !important;
     height: 16px !important;
 }
+
+/* Colors */
+.text-red {
+    color: red;
+}
