@@ -7,6 +7,7 @@ export class ArquivoIdioma {
     idUsuario: string;
     nomeArquivoBlob: string;
     urlArquivoBlob: string;
+    idioma: string;
 
     constructor() { 
         this.dataCadastro = new Date();

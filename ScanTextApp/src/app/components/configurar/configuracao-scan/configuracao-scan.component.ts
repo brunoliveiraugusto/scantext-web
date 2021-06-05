@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AlertService } from 'ngx-alerts';
 import { ArquivoIdioma } from 'src/app/models/arquivo-idioma';
 import { LinguagemService } from 'src/app/services/linguagem.service';
 import { ArquivoIdiomaService } from 'src/app/services/arquivo-idioma.service';
 import { InformacoesUsuario } from 'src/app/models/informacoes-usuario';
 import { isNullOrUndefined } from 'util';
+import { ModalScanComponent } from 'src/app/utils/modal/modal-scan/modal-scan.component';
+import { BodyTypeEnum } from 'src/app/utils/enums/body-type-enum';
 
 @Component({
   selector: 'app-configuracao-scan',
@@ -19,6 +21,14 @@ export class ConfiguracaoScanComponent implements OnInit {
   loading: boolean = false;
   informacoesUsuario: InformacoesUsuario;
   arquivosIdioma: Array<ArquivoIdioma>;
+
+  @ViewChild('modal', { static: false }) modal: ModalScanComponent;
+  @ViewChild('modalBodyTemplate', { static: false }) modalBodyTemplate: TemplateRef<any>;
+  nomeArquivoSelecionadoExclusao: string;
+  idExclusaoArquivoIdioma: string;
+  tituloModal: string = "Apagar Arquivo de Idioma";
+  btnPrimary: string = "Sim";
+  btnSecond: string = "Não";
 
   constructor(
     private linguagemService: LinguagemService, 
@@ -93,6 +103,7 @@ export class ConfiguracaoScanComponent implements OnInit {
         this.alertService.success("O Arquivo de Idioma foi salvo com sucesso.");
         this.Loading();
         this.arquivoIdioma = new ArquivoIdioma();
+        this.carregarArquivosIdiomaCadastrados();
         this.carregarIdiomas();
       }, 
       (err) => {
@@ -134,5 +145,25 @@ export class ConfiguracaoScanComponent implements OnInit {
       this.carregarArquivosIdiomaCadastrados();
       this.carregarIdiomas();
     });
+  }
+
+  abrirModalRemocaoArquivoIdioma(id: string) {
+    this.nomeArquivoSelecionadoExclusao = this.arquivosIdioma.find(x => x.id == id).idioma;
+    this.modal.setContentBody(BodyTypeEnum.IsTemplate);
+    this.modal.modalBodyTemplate = this.modalBodyTemplate;
+    this.idExclusaoArquivoIdioma = id;
+    this.modal.open();
+  }
+
+  processReponseModal(response: boolean) {
+    this.modal.close();
+    if(response) {
+      this.apagarArquivoIdioma(this.idExclusaoArquivoIdioma);
+    }
+    else {
+      this.idExclusaoArquivoIdioma = null;
+      this.nomeArquivoSelecionadoExclusao = null;
+    }
+
   }
 }

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
 import { PageTitleScanModule } from 'src/app/page-title-scan/page-title-scan.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ModalScanModule } from 'src/app/utils/modal/modal-scan/modal-scan.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FormsModule,
     NgxLoadingModule.forRoot({}),
     PageTitleScanModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    ModalScanModule
   ],
   exports: [
     ConfiguracaoScanComponent
