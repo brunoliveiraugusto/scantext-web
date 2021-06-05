@@ -36,7 +36,8 @@
                                         [data]="idiomas"
                                         [settings]="setSettingsDropdown('idioma')"
                                         (onSelect)="selecionarLinguagemDropdown($event)"
-                                        (onDeSelect)="removerLinguagemSelecionada()">
+                                        (onDeSelect)="removerLinguagemSelecionada()"
+                                        [(ngModel)]="idiomaSelecionado">
                                     </ng-multiselect-dropdown>
                                 </div>
                                 <div class="form-group">

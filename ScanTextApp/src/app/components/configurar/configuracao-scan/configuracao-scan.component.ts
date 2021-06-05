@@ -102,7 +102,7 @@ export class ConfiguracaoScanComponent implements OnInit {
       (res) => {
         this.alertService.success("O Arquivo de Idioma foi salvo com sucesso.");
         this.Loading();
-        this.arquivoIdioma = new ArquivoIdioma();
+        this.limparSelecaoIdiomaArquivo();
         this.carregarArquivosIdiomaCadastrados();
         this.carregarIdiomas();
       }, 
@@ -164,6 +164,10 @@ export class ConfiguracaoScanComponent implements OnInit {
       this.idExclusaoArquivoIdioma = null;
       this.nomeArquivoSelecionadoExclusao = null;
     }
+  }
 
+  limparSelecaoIdiomaArquivo() {
+    this.idiomaSelecionado = null;
+    (<HTMLInputElement>document.getElementById("inputFileIdioma")).value = "";
   }
 }
