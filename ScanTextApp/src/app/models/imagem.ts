@@ -11,4 +11,5 @@ export class Imagem {
     linguagem: Linguagem;
     dataCadastro: Date;
     dataAtualizacao: Date;
+    urlImagemBlob: string;
 }

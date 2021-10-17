@@ -1,4 +1,4 @@
-<div class="container margin-top container-scan col-lg-10">    
+<div class="container margin-top container-scan col-lg-10">
     <app-page-title-scan [page-name]="'Digitalizar'" [icon]="'bi-upc-scan'"></app-page-title-scan>
     <div class="row margin-bottom-form">
         <div class="offset-md-3 offset-lg-3 col-md-3 col-lg-3">
@@ -18,8 +18,7 @@
                 [placeholder]="'Selecione'"
                 [data]="modelos"
                 [(ngModel)]="modeloSelecionado"
-                [settings]="setSettingsDropdown('modelo')"
-                (onDeSelect)="removerModeloSelecionado()">
+                [settings]="setSettingsDropdown('modelo')">
             </ng-multiselect-dropdown>
         </div>
     </div>
@@ -87,7 +86,6 @@
     </div>
 </div>
 <input [hidden]="true" class="align-btn-new" type="file" (change)="selecionarImagem($event)" accept="application/pdf, image/*" #file>
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>
 <app-modal-scan
     #modalScan
     [text-body]="mensagemModal"

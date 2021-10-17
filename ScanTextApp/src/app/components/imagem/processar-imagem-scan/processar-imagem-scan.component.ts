@@ -25,7 +25,6 @@ export class ProcessarImagemScanComponent implements OnInit {
   public linguagemSelecionada: any = {};
   public modeloSelecionado: any;
   public imagem: Imagem;
-  public loading: boolean = false;
 
   qrCode: QrCode = new QrCode();
   public mensagemModal: string;
@@ -33,12 +32,12 @@ export class ProcessarImagemScanComponent implements OnInit {
 
   @ViewChild('modalScan', {static: false}) modalScan: ModalScanComponent;
 
-  constructor(private linguagemService: LinguagemService, 
+  constructor(private linguagemService: LinguagemService,
       private scanService: ScanService,
       private alertService: AlertService,
       private imagemService: ImagemService,
       private router: Router,
-      private activatedRoute: ActivatedRoute) { 
+      private activatedRoute: ActivatedRoute) {
     this.imagem = new Imagem();
     this.obterIdImagem();
   }
@@ -50,17 +49,16 @@ export class ProcessarImagemScanComponent implements OnInit {
 
   private selecionarImagem(event) {
     if(event.target.files != null && event.target.files.length == 1) {
-      this.Loading();
       let base64;
       var reader = new FileReader();
-      this.preencherInformacoesImagem(event.target.files[0]);
+      const file = event.target.files[0];
+      this.preencherInformacoesImagem(file);
       reader.onloadend = (e) => {
         base64 = reader.result as string;
         this.setBase64(base64);
-        this.Loading();
       }
-      reader.readAsDataURL(event.target.files[0]);
-    } 
+      reader.readAsDataURL(file);
+    }
     else if(event.target.files.length > 1) {
       this.alertService.warning("Selecione uma imagem por vez.");
     }
@@ -87,8 +85,6 @@ export class ProcessarImagemScanComponent implements OnInit {
     }, (err) => {});
   }
 
-
-
   setSettingsDropdown(textField: string) {
     return {
       singleSelection: true,
@@ -111,27 +107,27 @@ export class ProcessarImagemScanComponent implements OnInit {
   }
 
   lerImagem() {
-    if(!this.indicaItensObrigatoriosSelecionados()) 
+    if(!this.indicaItensObrigatoriosSelecionados())
       return false;
-    
-    this.Loading();
+
     const imagemTesseract = this.obterDadosParaLeitura(this.imagem);
     this.scanService.post('ler-imagem', imagemTesseract)
     .subscribe((res) => {
-      const imagem = res.data;
-      this.imagem.meanConfidence = imagem.meanConfidence;
-      this.imagem.texto = imagem.texto;
-      if(this.imagem.meanConfidence <= 0 || isNullOrUndefined(this.imagem.texto)) {
-        this.alertService.warning("Erro ao processar a imagem.");
-      } else {
-        this.scrollToBottom();
-      }
-      this.Loading();
+      this.processarRespostaLeituraImagem(res.data);
     }, (err) => {
-      this.Loading();
       this.alertService.danger("Erro ao processar a imagem.");
     })
     this.scrollToBottom();
+  }
+
+  processarRespostaLeituraImagem(imagem: Imagem) {
+    this.imagem.meanConfidence = imagem.meanConfidence;
+    this.imagem.texto = imagem.texto;
+    if(this.imagem.meanConfidence <= 0 || isNullOrUndefined(this.imagem.texto)) {
+      this.alertService.warning("Erro ao processar a imagem.");
+    } else {
+      this.scrollToBottom();
+    }
   }
 
   obterDadosParaLeitura(imagem: Imagem): any {
@@ -143,7 +139,7 @@ export class ProcessarImagemScanComponent implements OnInit {
       this.alertService.warning("Selecione o Idioma da Imagem.");
       return false;
     }
-    
+
     if(isNullOrUndefined(this.imagem.base64)) {
       this.alertService.warning("Selecione a Imagem.");
       return false;
@@ -158,21 +154,6 @@ export class ProcessarImagemScanComponent implements OnInit {
       if(divBtnGravar)
         window.scrollTo({ top: divBtnGravar.scrollWidth, behavior: 'smooth' });
     }, 200);
-  }
-
-  base64ToBuffer(base64: string) {
-    let x = base64.split(",");
-    let binary_string = window.atob(x[1]);
-    let len = binary_string.length;
-    let bytes = new ArrayBuffer(len);
-    for (let i = 0; i < len; i++) {
-        bytes[i] = binary_string.charCodeAt(i);
-    }
-    //this.imagem.buffer = bytes;
-  }
-
-  Loading() {
-    this.loading = !this.loading;
   }
 
   preencherModelos() {
@@ -191,37 +172,31 @@ export class ProcessarImagemScanComponent implements OnInit {
     if(!this.indicaImagemValida()) {
       return false;
     }
-    
+
     if(isNullOrUndefined(this.imagem.id) || Utils.idInvalido(this.imagem.id)) {
       this.gravarImagem();
-    } 
+    }
     else {
       this.atualizarImagem();
     }
   }
 
   gravarImagem() {
-    this.Loading();
     this.imagemService.post('', this.imagem)
     .subscribe((res) => {
       this.alertService.success("A imagem e os dados processados foram salvos com sucesso.");
-      this.Loading();
       this.redirectTo(RouterComponentsEnum.RouterConsultaImagem);
     }, (error) => {
       this.alertService.danger("Erro ao salvar a imagem.");
-      this.Loading();
     })
   }
 
   atualizarImagem() {
-    this.Loading();
     this.imagemService.put('', this.imagem, this.imagem.id)
     .subscribe((res) => {
       this.alertService.success("A imagem e os dados processados foram atualizados com sucesso.");
-      this.Loading();
       this.redirectTo(RouterComponentsEnum.RouterConsultaImagem);
     },(err) => {
-      this.Loading();
       this.alertService.danger("Erro ao atualizar a imagem.");
     });
   }
@@ -250,14 +225,12 @@ export class ProcessarImagemScanComponent implements OnInit {
   }
 
   carregarImagemPorId(id: string) {
-    this.Loading();
     this.imagemService.getById('', id)
     .subscribe((res) => {
       let imagem = res as any;
       this.imagem = imagem;
       this.definirLinguagemSelecionada(imagem.linguagem);
       this.router.navigate([], { queryParams: null});
-      this.Loading();
     });
   }
 
@@ -278,7 +251,7 @@ export class ProcessarImagemScanComponent implements OnInit {
     let texto = this.imagem.texto;
     if(texto === this.imagem.texto.toUpperCase())
       this.imagem.texto = texto.toLowerCase();
-    else 
+    else
       this.imagem.texto = texto.toUpperCase();
   }
 
@@ -287,15 +260,12 @@ export class ProcessarImagemScanComponent implements OnInit {
   }
 
   getQrCode() {
-    this.Loading();
     this.qrCode.text = this.imagem.texto;
     this.scanService.post("gerar-qr-code/", this.qrCode).subscribe(
     (res) => {
       const qrCode = res.data;
-      this.Loading();
       this.openQrCode(qrCode.code);
     }, (err) => {
-      this.Loading();
       this.alertService.danger("Não foi possível gerar o QR Code do texto da imagem selecionada, tente novamente.");
     });
   }
