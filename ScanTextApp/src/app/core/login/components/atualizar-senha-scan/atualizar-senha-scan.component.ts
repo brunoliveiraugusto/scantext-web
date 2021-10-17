@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
-import { AtualizaSenha } from 'src/app/models/atualiza-senha';
+import { AtualizaSenha } from 'src/app/shared/models/atualiza-senha';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { isNullOrUndefined } from 'util';
 
@@ -12,11 +12,11 @@ import { isNullOrUndefined } from 'util';
 })
 export class AtualizarSenhaScanComponent implements OnInit {
 
-  private atualizaSenha: AtualizaSenha = new AtualizaSenha();
+  atualizaSenha: AtualizaSenha = new AtualizaSenha();
   loading: boolean = false;
 
-  constructor(private usuarioService: UsuarioService, private alertService: AlertService, 
-    private router: Router, private activatedRouter: ActivatedRoute) { 
+  constructor(private usuarioService: UsuarioService, private alertService: AlertService,
+    private router: Router, private activatedRouter: ActivatedRoute) {
       this.activatedRouter.params.subscribe((params) => {
         this.atualizaSenha.token = params.token;
       });
@@ -25,14 +25,14 @@ export class AtualizarSenhaScanComponent implements OnInit {
   ngOnInit() {
   }
 
-  private atualizarSenha() {
+  atualizarSenha() {
     if(this.formularioPreenchido()) {
       this.Loading();
       this.usuarioService.post('atualizar-senha', this.atualizaSenha).subscribe((res) => {
         this.Loading();
         this.alertService.success("Senha atualizada com sucesso.");
         this.navigateTo('login');
-      }, 
+      },
       (err) => {
         this.Loading();
         this.alertService.warning(err.error.errors[0].valor);

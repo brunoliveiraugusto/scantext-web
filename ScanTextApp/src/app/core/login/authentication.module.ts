@@ -8,7 +8,7 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { AlertModule } from 'ngx-alerts';
 import { NgxLoadingModule } from 'ngx-loading';
 import { RedefinirSenhaScanComponent } from './components/redefinir-senha-scan/redefinir-senha-scan.component';
-import { ModalScanModule } from '../utils/modal/modal-scan/modal-scan.module';
+import { ModalScanModule } from '../../shared/modal/modal-scan/modal-scan.module';
 import { AtualizarSenhaScanComponent } from './components/atualizar-senha-scan/atualizar-senha-scan.component';
 
 @NgModule({

@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ImagemService } from 'src/app/services/imagem.service';
-import { PaginationFilter } from 'src/app/utils/models/pagination-filter';
+import { PaginationFilter } from 'src/app/shared/models/pagination-filter';
 import { DatePipe, PercentPipe } from '@angular/common';
-import { Page } from 'src/app/utils/models/page';
+import { Page } from 'src/app/shared/models/page';
 import { SelectionType } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
-import { ModalScanComponent } from '../../../utils/modal/modal-scan/modal-scan.component';
+import { ModalScanComponent } from '../../../shared/modal/modal-scan/modal-scan.component';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { BodyTypeEnum } from 'src/app/utils/enums/body-type-enum';
+import { BodyTypeEnum } from 'src/app/shared/enums/body-type-enum';
 
 declare let $: any;
 
@@ -48,10 +48,10 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
 
   public emailUsuario: string;
 
-  constructor(private imagemService: ImagemService, 
+  constructor(private imagemService: ImagemService,
       private datePipe: DatePipe, private percentPipe: PercentPipe,
       private router: Router, private alertService: AlertService,
-      private usuarioService: UsuarioService) { 
+      private usuarioService: UsuarioService) {
     this.paginationFilter = new PaginationFilter();
     this.page.number = 1;
     this.page.limit = 5;
@@ -123,7 +123,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
   }
 
   processReponseModal(response: any) {
-    if(!this.indicaEnvioEmail && response) { 
+    if(!this.indicaEnvioEmail && response) {
       this.excluirImagem();
     } else if(this.indicaEnvioEmail && response) {
       this.enviarDadosImagemEmail();
@@ -140,7 +140,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
       this.Loading();
       this.carregarImagensPaginacao(this.page);
       this.rowSelected = {};
-    }); 
+    });
   }
 
   abrirModalExclusao() {
@@ -186,7 +186,7 @@ export class ConsultaImagemProcessadaScanComponent implements OnInit {
       this.alertService.warning("Imagem não disponível para download.");
       return;
     }
-    
+
     window.open(imagem.urlImagemBlob, "_blank");
   }
 }

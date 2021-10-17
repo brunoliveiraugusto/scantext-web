@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { isNullOrUndefined } from '@swimlane/ngx-datatable';
 import { AlertService } from 'ngx-alerts';
-import { Login } from 'src/app/models/login';
+import { Login } from 'src/app/shared/models/login';
 import { LoginService } from 'src/app/services/login.service';
 import { Role } from '../../shared/role';
 
@@ -18,7 +18,7 @@ export class LoginScanComponent implements OnInit {
   loading: boolean = false;
   dadosLogin: Login;
 
-  constructor(private loginService: LoginService, private router: Router, private alertService: AlertService) { 
+  constructor(private loginService: LoginService, private router: Router, private alertService: AlertService) {
     this.dadosLogin = new Login();
   }
 
@@ -39,7 +39,7 @@ export class LoginScanComponent implements OnInit {
           this.Loading();
         }
       });
-    }  
+    }
   }
 
   Loading() {

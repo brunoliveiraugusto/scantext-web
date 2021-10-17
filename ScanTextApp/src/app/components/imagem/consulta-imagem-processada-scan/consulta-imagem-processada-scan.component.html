@@ -1,8 +1,8 @@
-<div class="container margin-top container-scan col-lg-10">    
+<div class="container margin-top container-scan col-lg-10">
     <app-page-title-scan [page-name]="'Imagens'" [icon]="'bi-images'"></app-page-title-scan>
     <div class="btn-group col-md-12">
         <div class="offset-md-10 col-md-2 form-button-acoes margin-bottom-form">
-            <button type="button" class="btn btn-primary dropdown-toggle button-acoes" 
+            <button type="button" class="btn btn-primary dropdown-toggle button-acoes"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [disabled]="!rowSelected"
                 [ngClass]="{'background-disabled' : !rowSelected}">
                 Ações
@@ -38,8 +38,6 @@
         </ngx-datatable>
     </div>
 </div>
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }" [template]="customLoadingTemplate"></ngx-loading>
-
 <app-modal-scan
     #modal
     [text-body]="mensagemModal"

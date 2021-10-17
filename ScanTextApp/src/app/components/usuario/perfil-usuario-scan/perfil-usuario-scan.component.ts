@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from 'ngx-alerts';
-import { InformacoesUsuario } from 'src/app/models/informacoes-usuario';
-import { Usuario } from 'src/app/models/usuario';
+import { InformacoesUsuario } from 'src/app/shared/models/informacoes-usuario';
+import { Usuario } from 'src/app/shared/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { isNullOrUndefined } from 'util';
 
@@ -19,7 +19,7 @@ export class PerfilUsuarioScanComponent implements OnInit {
   indicaUsuarioExistente: boolean = false;
   loading: boolean = false;
 
-  constructor(private usuarioService: UsuarioService, private datePipe: DatePipe, private alertService: AlertService) { 
+  constructor(private usuarioService: UsuarioService, private datePipe: DatePipe, private alertService: AlertService) {
     this.usuario = new Usuario();
     this.informacoesUsuario = new InformacoesUsuario();
   }

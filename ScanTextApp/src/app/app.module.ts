@@ -10,16 +10,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertModule } from 'ngx-alerts';
-import { NavbarScanModule } from './navbar-scan/navbar-scan.module';
+import { NavbarScanModule } from './core/navbar-scan/navbar-scan.module';
 import { NgxLoadingModule } from 'ngx-loading';
-import { FooterScanModule } from './footer-scan/footer-scan.module';
+import { FooterScanModule } from './core/footer-scan/footer-scan.module';
 import { ImagemProcessadaScanModule } from './components/imagem/consulta-imagem-processada-scan/imagem-processada-scan.module';
-import { PageTitleScanModule } from './page-title-scan/page-title-scan.module';
-import { MainScanComponent } from './main/main-scan/main-scan.component';
-import { NotFoundScanModule } from './utils/components/not-found/not-found-scan/not-found-scan.module';
+import { PageTitleScanModule } from './core/page-title-scan/page-title-scan.module';
+import { MainScanComponent } from './core/main/main-scan/main-scan.component';
+import { NotFoundScanModule } from './shared/components/not-found/not-found-scan/not-found-scan.module';
 import { HeaderInterceptor } from './services/header-interceptor';
-import { ModalScanModule } from './utils/modal/modal-scan/modal-scan.module';
-import { AuthenticationModule } from './login/authentication.module';
+import { ModalScanModule } from './shared/modal/modal-scan/modal-scan.module';
+import { AuthenticationModule } from './core/login/authentication.module';
 import { ConfigurarModule } from './components/configurar/configurar.module';
 
 @NgModule({

@@ -1,12 +1,12 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AlertService } from 'ngx-alerts';
-import { ArquivoIdioma } from 'src/app/models/arquivo-idioma';
+import { ArquivoIdioma } from 'src/app/shared/models/arquivo-idioma';
 import { LinguagemService } from 'src/app/services/linguagem.service';
 import { ArquivoIdiomaService } from 'src/app/services/arquivo-idioma.service';
-import { InformacoesUsuario } from 'src/app/models/informacoes-usuario';
+import { InformacoesUsuario } from 'src/app/shared/models/informacoes-usuario';
 import { isNullOrUndefined } from 'util';
-import { ModalScanComponent } from 'src/app/utils/modal/modal-scan/modal-scan.component';
-import { BodyTypeEnum } from 'src/app/utils/enums/body-type-enum';
+import { ModalScanComponent } from 'src/app/shared/modal/modal-scan/modal-scan.component';
+import { BodyTypeEnum } from 'src/app/shared/enums/body-type-enum';
 
 @Component({
   selector: 'app-configuracao-scan',
@@ -31,11 +31,11 @@ export class ConfiguracaoScanComponent implements OnInit {
   btnSecond: string = "Não";
 
   constructor(
-    private linguagemService: LinguagemService, 
+    private linguagemService: LinguagemService,
     private alertService: AlertService,
     private arquivoIdiomaService: ArquivoIdiomaService
-  ) 
-  { 
+  )
+  {
     this.arquivoIdioma = new ArquivoIdioma();
     this.informacoesUsuario = new InformacoesUsuario();
     this.arquivosIdioma = new Array<ArquivoIdioma>();
@@ -88,7 +88,7 @@ export class ConfiguracaoScanComponent implements OnInit {
         this.arquivoIdioma.arquivo = reader.result as string;
       }
       reader.readAsDataURL(event.target.files[0]);
-    } 
+    }
     else if(event.target.files.length > 1) {
       this.alertService.warning("Selecione um arquivo por vez.");
     }
@@ -105,7 +105,7 @@ export class ConfiguracaoScanComponent implements OnInit {
         this.limparSelecaoIdiomaArquivo();
         this.carregarArquivosIdiomaCadastrados();
         this.carregarIdiomas();
-      }, 
+      },
       (err) => {
         this.alertService.danger("Erro ao tentar salvar o Arquivo de Idioma, tente novamente.");
         this.Loading();

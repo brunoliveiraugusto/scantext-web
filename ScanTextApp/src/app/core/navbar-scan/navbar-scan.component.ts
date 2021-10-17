@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { InformacoesUsuario } from '../models/informacoes-usuario';
+import { InformacoesUsuario } from '../../shared/models/informacoes-usuario';
 
 @Component({
   selector: 'app-navbar-scan',
@@ -14,7 +14,7 @@ export class NavbarScanComponent implements OnInit {
   isMobile: boolean = false;
   informacoesUsuario: InformacoesUsuario;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
     this.informacoesUsuario = new InformacoesUsuario();
   }
 

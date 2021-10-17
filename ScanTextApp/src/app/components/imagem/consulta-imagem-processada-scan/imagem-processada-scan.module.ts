@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsultaImagemProcessadaScanComponent } from './consulta-imagem-processada-scan.component';
-import { PageTitleScanModule } from '../../../page-title-scan/page-title-scan.module';
+import { PageTitleScanModule } from '../../../core/page-title-scan/page-title-scan.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AlertModule } from 'ngx-alerts';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ModalScanModule } from '../../../utils/modal/modal-scan/modal-scan.module';
+import { ModalScanModule } from '../../../shared/modal/modal-scan/modal-scan.module';
 
 @NgModule({
   declarations: [

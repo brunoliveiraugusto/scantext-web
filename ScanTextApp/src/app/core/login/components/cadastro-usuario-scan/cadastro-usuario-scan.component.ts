@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
-import { Usuario } from 'src/app/models/usuario';
+import { Usuario } from 'src/app/shared/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { isNullOrUndefined } from 'util';
 import { Role } from '../../shared/role';
@@ -17,7 +17,7 @@ export class CadastroUsuarioScanComponent implements OnInit {
   loading: boolean = false;
   indicaUsuarioExistente: boolean = false;
 
-  constructor(private router: Router, private usuarioService: UsuarioService, private alertService: AlertService) { 
+  constructor(private router: Router, private usuarioService: UsuarioService, private alertService: AlertService) {
     this.usuario = new Usuario();
   }
 
@@ -56,7 +56,7 @@ export class CadastroUsuarioScanComponent implements OnInit {
     if(this.indicaUsuarioValido()) {
       this.Loading();
       this.usuario.role = Role.UsuarioComum;
-      this.usuarioService.post('', this.usuario) 
+      this.usuarioService.post('', this.usuario)
       .subscribe((res) => {
         this.alertService.success("Usuário criado com sucesso. Por favor, acesse seu e-mail e siga as instruções para criar uma nova senha.");
         this.Loading();

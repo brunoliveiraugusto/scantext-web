@@ -4,9 +4,9 @@ import { ConfiguracaoScanComponent } from './configuracao-scan/configuracao-scan
 import { AlertModule } from 'ngx-alerts';
 import { FormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
-import { PageTitleScanModule } from 'src/app/page-title-scan/page-title-scan.module';
+import { PageTitleScanModule } from 'src/app/core/page-title-scan/page-title-scan.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { ModalScanModule } from 'src/app/utils/modal/modal-scan/modal-scan.module';
+import { ModalScanModule } from 'src/app/shared/modal/modal-scan/modal-scan.module';
 
 
 @NgModule({

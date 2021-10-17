@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Login } from '../models/login';
+import { Login } from '../shared/models/login';
 import { BaseHttpService } from './base-http.service';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { BaseHttpService } from './base-http.service';
 })
 export class LoginService extends BaseHttpService<any> {
 
-  constructor(http: HttpClient) { 
+  constructor(http: HttpClient) {
     super(http, 'login')
   }
 

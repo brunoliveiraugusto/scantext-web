@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ContentChild, TemplateRef } from '@angular/core';
-import { BodyTypeEnum } from '../../../utils/enums/body-type-enum';
+import { BodyTypeEnum } from '../../../shared/enums/body-type-enum';
 
 declare let $: any;
 
@@ -23,7 +23,7 @@ export class ModalScanComponent implements OnInit {
   bodyIsText: boolean = false;
   bodyIsTemplate: boolean = false;
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {
@@ -62,7 +62,7 @@ export class ModalScanComponent implements OnInit {
         this.bodyIsTemplate = true;
         this.bodyIsText = false;
         break;
-    }    
+    }
   }
 
 }

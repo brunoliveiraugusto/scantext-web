@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
-import { QrCode } from 'src/app/models/qr-code';
-import { BodyTypeEnum } from 'src/app/utils/enums/body-type-enum';
-import { RouterComponentsEnum } from 'src/app/utils/enums/router-components-enum';
-import { ModalScanComponent } from 'src/app/utils/modal/modal-scan/modal-scan.component';
+import { QrCode } from 'src/app/shared/models/qr-code';
+import { BodyTypeEnum } from 'src/app/shared/enums/body-type-enum';
+import { RouterComponentsEnum } from 'src/app/shared/enums/router-components-enum';
+import { ModalScanComponent } from 'src/app/shared/modal/modal-scan/modal-scan.component';
 import { isNullOrUndefined } from 'util';
-import { Imagem } from '../../../models/imagem';
+import { Imagem } from '../../../shared/models/imagem';
 import { ImagemService } from '../../../services/imagem.service';
 import { LinguagemService } from '../../../services/linguagem.service';
 import { ScanService } from '../../../services/scan.service';
-import { Utils } from '../../../utils/models/utils';
+import { Utils } from '../../../shared/models/utils';
 
 @Component({
   selector: 'app-processar-imagem-scan',
@@ -47,7 +47,7 @@ export class ProcessarImagemScanComponent implements OnInit {
     this.preencherModelos();
   }
 
-  private selecionarImagem(event) {
+  selecionarImagem(event) {
     if(event.target.files != null && event.target.files.length == 1) {
       let base64;
       var reader = new FileReader();
